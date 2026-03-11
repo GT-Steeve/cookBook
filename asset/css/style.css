@@ -221,6 +221,28 @@ body {
   white-space: nowrap;
 }
 
+/* Section separator in TOC */
+.toc-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0 6px;
+}
+.toc-section-label {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rust);
+  white-space: nowrap;
+}
+.toc-section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--rust), transparent);
+  opacity: 0.35;
+}
+
 /* ── BACK COVER ── */
 .back-cover {
   background: var(--warm-brown);

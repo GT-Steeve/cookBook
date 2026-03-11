@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>004 · Vinaigrette classique — Carnet de Cuisine</title>
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+  .variant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+  }
+  .variant-card {
+    background: #faf7f1;
+    border: 1px solid rgba(201,168,76,0.25);
+    border-top: 3px solid var(--gold);
+    border-radius: 0 0 6px 6px;
+    padding: 22px 20px;
+  }
+  .variant-header {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .variant-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1.5rem;
+    color: rgba(201,168,76,0.5);
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .variant-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--warm-brown);
+    line-height: 1.2;
+  }
+  .variant-card .ingredient-item { font-size: 0.9rem; padding: 5px 0; }
+  .variant-card .ingredient-qty  { font-size: 0.76rem; min-width: 52px; }
+  .variant-card .step            { gap: 12px; margin-bottom: 12px; }
+  .variant-card .step-num        { font-size: 1.4rem; min-width: 26px; }
+  .variant-card .step-text       { font-size: 0.95rem; line-height: 1.6; }
+  .variant-usage {
+    margin-top: 12px;
+    padding: 8px 12px;
+    background: var(--light-olive);
+    border-radius: 4px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--olive);
+  }
+  .variant-section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .variant-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--rust), transparent);
+    opacity: 0.3;
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html">&#8592; Retour au sommaire</a>
+    <span class="nav-code">004</span>
+  </nav>
+
+  <div class="recipe-page">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">004</div>
+        <div class="recipe-category">Sauce · Vinaigrette</div>
+        <h1 class="recipe-title">Vinaigrette classique</h1>
+        <p class="recipe-subtitle">la base &amp; ses trois variantes</p>
+      </div>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">3 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">Aucune</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">2–3</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Très facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Vinaigrette classique</div>
+          <div class="ingredient-item"><span class="ingredient-qty">3 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">vinaigre (balsamique, cidre ou vin rouge)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">moutarde de Dijon</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel et poivre</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Dans un petit bol, mettre la moutarde et le vinaigre. Mélanger avec un fouet ou une fourchette.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter l'huile en filet tout en fouettant pour émulsionner la vinaigrette.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Saler et poivrer selon le goût.</p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Astuces &amp; idées de base</div>
+      <p class="tip-text">
+        Ajouter une gousse d'ail écrasée pour relever le goût · Une cuillère à café de miel pour une touche sucrée-salée · Incorporer 1 c.s. de yaourt pour une version plus crémeuse · Remplacer l'huile d'olive par de l'huile de noix ou de sésame pour varier les saveurs.
+      </p>
+    </div>
+
+    <!-- Variantes -->
+    <div class="variant-section-label">3 variantes</div>
+
+    <div class="variant-grid">
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <span class="variant-num">1</span>
+          <span class="variant-title">Citron‑miel</span>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-item"><span class="ingredient-qty">3 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">jus de citron frais</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">miel ou sirop d'érable</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel et poivre</span></div>
+        </div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Mélanger le jus de citron et le miel.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter l'huile en filet en fouettant. Saler et poivrer.</p></div>
+        <div class="variant-usage">✔ Parfait pour les salades avocat, tomates &amp; jeunes pousses.</div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <span class="variant-num">2</span>
+          <span class="variant-title">Yaourt‑ciboulette</span>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-item"><span class="ingredient-qty">2 c.s.</span><span class="ingredient-name">yaourt nature</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">vinaigre de cidre</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">ciboulette ciselée</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel et poivre</span></div>
+        </div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Mélanger le yaourt, le vinaigre et l'huile.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter la ciboulette, le sel et le poivre.</p></div>
+        <div class="variant-usage">✔ Idéal pour les salades croquantes concombre, radis ou carottes.</div>
+      </div>
+
+      <div class="variant-card">
+        <div class="variant-header">
+          <span class="variant-num">3</span>
+          <span class="variant-title">Moutarde‑orange</span>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-item"><span class="ingredient-qty">3 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 c.s.</span><span class="ingredient-name">jus d'orange frais</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">moutarde de Dijon</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel et poivre</span></div>
+        </div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Mélanger le jus d'orange et la moutarde.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter l'huile en filet en fouettant. Saler et poivrer.</p></div>
+        <div class="variant-usage">✔ Excellent sur une salade de roquette, betterave ou mâche.</div>
+      </div>
+
+    </div>
+
+    <div class="page-num">recette n° 004</div>
+  </div>
+
+</div>
+</body>
+</html>
