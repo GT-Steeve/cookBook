@@ -1,0 +1,485 @@
+/* ═══════════════════════════════════════════
+   CARNET DE CUISINE — Feuille de style partagée
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital@0;1&display=swap');
+
+:root {
+  --cream:       #f5f0e8;
+  --parchment:   #ede5d0;
+  --warm-brown:  #3d2b1a;
+  --olive:       #5c6b3a;
+  --rust:        #9b4521;
+  --gold:        #c9a84c;
+  --light-olive: #e8edd8;
+  --ink:         #1a1209;
+  --muted:       #7a6a55;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--warm-brown);
+  font-family: 'Cormorant Garamond', serif;
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ── BOOK WRAPPER ── */
+.book {
+  max-width: 900px;
+  margin: 0 auto;
+  background: var(--cream);
+  position: relative;
+  box-shadow:
+    -8px 0 20px rgba(0,0,0,0.4),
+     8px 0 20px rgba(0,0,0,0.4),
+     0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* spine */
+.book::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 24px;
+  background: linear-gradient(to right, #1a0f06, #3d2b1a, #5c3d22, #3d2b1a);
+  z-index: 10;
+}
+
+/* ── COVER ── */
+.cover {
+  min-height: 100vh;
+  background: var(--warm-brown);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 60px 60px 84px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(201,168,76,0.3);
+  pointer-events: none;
+}
+.cover::after {
+  content: '';
+  position: absolute;
+  inset: 26px;
+  border: 1px solid rgba(201,168,76,0.15);
+  pointer-events: none;
+}
+.cover-ornament {
+  font-size: 2.4rem;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+  margin-bottom: 24px;
+  opacity: 0.8;
+}
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 400;
+  color: var(--cream);
+  text-align: center;
+  line-height: 1.1;
+  letter-spacing: 0.04em;
+}
+.cover h1 em {
+  display: block;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 0.55em;
+  letter-spacing: 0.12em;
+  margin-bottom: 10px;
+}
+.cover-divider {
+  width: 180px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 32px auto;
+}
+.cover-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 300;
+  font-style: italic;
+  color: rgba(245,240,232,0.65);
+  letter-spacing: 0.15em;
+  text-align: center;
+}
+.cover-year {
+  position: absolute;
+  bottom: 48px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  color: rgba(201,168,76,0.5);
+  text-transform: uppercase;
+}
+.corner { position: absolute; font-size: 1.8rem; opacity: 0.25; }
+.corner.tl { top: 40px; left: 50px; }
+.corner.tr { top: 40px; right: 30px; transform: scaleX(-1); }
+.corner.bl { bottom: 40px; left: 50px; transform: scaleY(-1); }
+.corner.br { bottom: 40px; right: 30px; transform: scale(-1); }
+
+/* ── TABLE OF CONTENTS ── */
+.toc-page {
+  background: var(--parchment);
+  padding: 80px 60px 80px 84px;
+  min-height: 60vh;
+  position: relative;
+  border-top: 3px solid var(--warm-brown);
+}
+.toc-page::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--rust), var(--gold), var(--olive));
+  opacity: 0.4;
+}
+.section-label {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 20px;
+}
+.toc-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.6rem;
+  font-weight: 400;
+  color: var(--warm-brown);
+  margin-bottom: 40px;
+}
+.toc-list { list-style: none; }
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(61,43,26,0.1);
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.toc-item:hover .toc-item-title { color: var(--rust); }
+.toc-item:hover .toc-dots { border-color: var(--rust); opacity: 0.5; }
+.toc-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 0.85rem;
+  font-style: italic;
+  color: var(--gold);
+  min-width: 32px;
+}
+.toc-code {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.7rem;
+  color: var(--muted);
+  background: rgba(61,43,26,0.07);
+  padding: 2px 7px;
+  border-radius: 3px;
+  margin-right: 12px;
+  letter-spacing: 0.08em;
+}
+.toc-item-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: var(--warm-brown);
+  transition: color 0.2s;
+}
+.toc-item-sub {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  margin-left: 8px;
+}
+.toc-dots {
+  flex: 1;
+  height: 1px;
+  border-top: 1px dashed rgba(61,43,26,0.2);
+  margin: 0 16px;
+  position: relative;
+  top: -4px;
+  transition: border-color 0.2s;
+}
+.toc-tag {
+  font-size: 0.75rem;
+  font-family: 'Libre Baskerville', serif;
+  letter-spacing: 0.08em;
+  padding: 3px 10px;
+  border-radius: 20px;
+  background: var(--light-olive);
+  color: var(--olive);
+  white-space: nowrap;
+}
+
+/* ── BACK COVER ── */
+.back-cover {
+  background: var(--warm-brown);
+  min-height: 50vh;
+  padding: 80px 60px 60px 84px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+.back-cover::before {
+  content: '';
+  position: absolute;
+  inset: 20px;
+  border: 1px solid rgba(201,168,76,0.2);
+}
+.back-cover p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: rgba(245,240,232,0.6);
+  text-align: center;
+  max-width: 420px;
+  line-height: 1.7;
+}
+.back-ornament {
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.5;
+}
+
+/* ═══════════════════════════════════════════
+   PAGES RECETTES (recettes/NNN.html)
+   ═══════════════════════════════════════════ */
+
+/* Navigation retour */
+.recipe-nav {
+  background: var(--warm-brown);
+  padding: 14px 24px 14px 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border-bottom: 2px solid var(--gold);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.recipe-nav a {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s;
+}
+.recipe-nav a:hover { opacity: 0.7; }
+.recipe-nav .nav-code {
+  margin-left: auto;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.6rem;
+  color: rgba(201,168,76,0.3);
+  line-height: 1;
+}
+
+/* Contenu recette */
+.recipe-page {
+  padding: 70px 60px 80px 84px;
+  background: var(--cream);
+  position: relative;
+}
+.recipe-page::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 0; bottom: 0;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--rust), var(--gold), var(--olive));
+  opacity: 0.3;
+}
+.recipe-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 36px;
+  gap: 24px;
+}
+.recipe-header-left { flex: 1; }
+.recipe-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 4rem;
+  color: rgba(201,168,76,0.25);
+  line-height: 1;
+  margin-bottom: -10px;
+}
+.recipe-category {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 8px;
+}
+.recipe-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 400;
+  color: var(--warm-brown);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+.recipe-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--muted);
+}
+.recipe-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  padding: 14px 20px;
+  background: var(--light-olive);
+  border-radius: 4px;
+  border-left: 3px solid var(--olive);
+  margin-top: 12px;
+}
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.meta-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--olive);
+  font-family: 'Libre Baskerville', serif;
+}
+.meta-value {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1rem;
+  color: var(--warm-brown);
+}
+.recipe-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  margin: 36px 0;
+}
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 48px;
+  margin-bottom: 40px;
+}
+.col-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--warm-brown);
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.ingredient-group { margin-bottom: 20px; }
+.ingredient-group-title {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.ingredient-item {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px dotted rgba(61,43,26,0.12);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+.ingredient-qty {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.82rem;
+  color: var(--rust);
+  min-width: 60px;
+  text-align: right;
+}
+.ingredient-name { color: var(--ink); }
+.step {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 22px;
+}
+.step-num {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.6;
+  min-width: 36px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.step-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.08rem;
+  line-height: 1.75;
+  color: #2a1f12;
+  padding-top: 4px;
+}
+.tip-box {
+  background: #fdf8ee;
+  border: 1px solid rgba(201,168,76,0.4);
+  border-left: 4px solid var(--gold);
+  padding: 18px 22px;
+  border-radius: 0 6px 6px 0;
+  margin-top: 30px;
+}
+.tip-label {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+}
+.tip-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.page-num {
+  text-align: right;
+  margin-top: 40px;
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: rgba(61,43,26,0.35);
+}
+
+/* ── MOBILE ── */
+@media (max-width: 640px) {
+  .book::before { width: 12px; }
+  .cover, .recipe-page, .toc-page { padding-left: 32px; padding-right: 24px; }
+  .recipe-nav { padding-left: 24px; }
+  .columns { grid-template-columns: 1fr; gap: 28px; }
+  .recipe-header { flex-direction: column; }
+}
