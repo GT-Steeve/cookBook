@@ -1,0 +1,4 @@
+Prototype 
+
+v0.00.1 = 1ière recette lentille au saumon
+v0.00.2 = design restaurant afficher plusieur recette

@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mes Recettes — Carnet de Cuisine</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #f5f0e8;
+    --parchment: #ede5d0;
+    --warm-brown: #3d2b1a;
+    --olive: #5c6b3a;
+    --rust: #9b4521;
+    --gold: #c9a84c;
+    --light-olive: #e8edd8;
+    --ink: #1a1209;
+    --muted: #7a6a55;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--warm-brown);
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── BOOK WRAPPER ── */
+  .book {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--cream);
+    position: relative;
+    box-shadow:
+      -8px 0 20px rgba(0,0,0,0.4),
+      8px 0 20px rgba(0,0,0,0.4),
+      0 20px 60px rgba(0,0,0,0.6);
+  }
+
+  /* spine effect */
+  .book::before {
+    content:'';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 24px;
+    background: linear-gradient(to right, #1a0f06, #3d2b1a, #5c3d22, #3d2b1a);
+    z-index: 10;
+  }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    min-height: 100vh;
+    background: var(--warm-brown);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px 60px 84px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content:'';
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(201,168,76,0.3);
+    pointer-events: none;
+  }
+  .cover::after {
+    content:'';
+    position: absolute;
+    inset: 26px;
+    border: 1px solid rgba(201,168,76,0.15);
+    pointer-events: none;
+  }
+
+  .cover-ornament {
+    font-size: 2.4rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+
+  .cover h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    font-weight: 400;
+    color: var(--cream);
+    text-align: center;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+  }
+
+  .cover h1 em {
+    display: block;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 0.55em;
+    letter-spacing: 0.12em;
+    margin-bottom: 10px;
+  }
+
+  .cover-divider {
+    width: 180px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 32px auto;
+  }
+
+  .cover-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(245,240,232,0.65);
+    letter-spacing: 0.15em;
+    text-align: center;
+  }
+
+  .cover-year {
+    position: absolute;
+    bottom: 48px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+    color: rgba(201,168,76,0.5);
+    text-transform: uppercase;
+  }
+
+  /* decorative botanical corners */
+  .corner { position: absolute; font-size: 1.8rem; opacity: 0.25; }
+  .corner.tl { top: 40px; left: 50px; }
+  .corner.tr { top: 40px; right: 30px; transform: scaleX(-1); }
+  .corner.bl { bottom: 40px; left: 50px; transform: scaleY(-1); }
+  .corner.br { bottom: 40px; right: 30px; transform: scale(-1); }
+
+  /* ── TABLE OF CONTENTS ── */
+  .toc-page {
+    background: var(--parchment);
+    padding: 80px 60px 80px 84px;
+    min-height: 60vh;
+    position: relative;
+    border-top: 3px solid var(--warm-brown);
+  }
+
+  .toc-page::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--rust), var(--gold), var(--olive));
+    opacity: 0.4;
+  }
+
+  .section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 20px;
+  }
+
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 400;
+    color: var(--warm-brown);
+    margin-bottom: 40px;
+  }
+
+  .toc-list { list-style: none; }
+
+  .toc-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(61,43,26,0.1);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .toc-item:hover .toc-item-title { color: var(--rust); }
+  .toc-item:hover .toc-dots { border-color: var(--rust); opacity: 0.5; }
+
+  .toc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--gold);
+    min-width: 32px;
+  }
+
+  .toc-item-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    color: var(--warm-brown);
+    transition: color 0.2s;
+  }
+
+  .toc-item-sub {
+    font-size: 0.85rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-left: 8px;
+  }
+
+  .toc-dots {
+    flex: 1;
+    height: 1px;
+    border-top: 1px dashed rgba(61,43,26,0.2);
+    margin: 0 16px;
+    position: relative;
+    top: -4px;
+    transition: border-color 0.2s;
+  }
+
+  .toc-tag {
+    font-size: 0.75rem;
+    font-family: 'Libre Baskerville', serif;
+    letter-spacing: 0.08em;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: var(--light-olive);
+    color: var(--olive);
+  }
+
+  /* ── RECIPE PAGES ── */
+  .recipe-page {
+    padding: 70px 60px 80px 84px;
+    background: var(--cream);
+    border-top: 3px solid var(--warm-brown);
+    position: relative;
+  }
+
+  .recipe-page:nth-child(even) { background: #faf7f1; }
+
+  /* chapter marker */
+  .recipe-page::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, var(--rust), var(--gold), var(--olive));
+    opacity: 0.3;
+  }
+
+  .recipe-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 36px;
+    gap: 24px;
+  }
+
+  .recipe-header-left { flex: 1; }
+
+  .recipe-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 4rem;
+    color: rgba(201,168,76,0.25);
+    line-height: 1;
+    margin-bottom: -10px;
+  }
+
+  .recipe-category {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 8px;
+  }
+
+  .recipe-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--warm-brown);
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .recipe-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--muted);
+  }
+
+  .recipe-meta {
+    display: flex;
+    gap: 24px;
+    padding: 14px 20px;
+    background: var(--light-olive);
+    border-radius: 4px;
+    border-left: 3px solid var(--olive);
+    margin-top: 12px;
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .meta-label {
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--olive);
+    font-family: 'Libre Baskerville', serif;
+  }
+
+  .meta-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    color: var(--warm-brown);
+  }
+
+  .recipe-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold), transparent);
+    margin: 36px 0;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+
+  .col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--warm-brown);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .col-title span { font-size: 1rem; }
+
+  /* Ingredient list */
+  .ingredient-group { margin-bottom: 20px; }
+
+  .ingredient-group-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+  }
+
+  .ingredient-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dotted rgba(61,43,26,0.12);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+
+  .ingredient-qty {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.82rem;
+    color: var(--rust);
+    min-width: 60px;
+    text-align: right;
+  }
+
+  .ingredient-name { color: var(--ink); }
+
+  /* Steps */
+  .step {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 22px;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.6;
+    min-width: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  .step-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #2a1f12;
+    padding-top: 4px;
+  }
+
+  /* Tip box */
+  .tip-box {
+    background: #fdf8ee;
+    border: 1px solid rgba(201,168,76,0.4);
+    border-left: 4px solid var(--gold);
+    padding: 18px 22px;
+    border-radius: 0 6px 6px 0;
+    margin-top: 30px;
+  }
+
+  .tip-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .tip-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.65;
+  }
+
+  /* page number */
+  .page-num {
+    position: absolute;
+    bottom: 24px;
+    right: 32px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(61,43,26,0.35);
+  }
+
+  /* ── BACK COVER ── */
+  .back-cover {
+    background: var(--warm-brown);
+    min-height: 50vh;
+    padding: 80px 60px 60px 84px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    position: relative;
+  }
+
+  .back-cover::before {
+    content:'';
+    position: absolute;
+    inset: 20px;
+    border: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .back-cover p {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: rgba(245,240,232,0.6);
+    text-align: center;
+    max-width: 420px;
+    line-height: 1.7;
+  }
+
+  .back-ornament {
+    font-size: 2rem;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  /* Smooth scroll */
+  html { scroll-behavior: smooth; }
+
+  /* Mobile */
+  @media (max-width: 640px) {
+    .book::before { width: 12px; }
+    .cover, .recipe-page, .toc-page { padding-left: 32px; padding-right: 24px; }
+    .columns { grid-template-columns: 1fr; gap: 28px; }
+    .recipe-header { flex-direction: column; }
+    .recipe-meta { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <!-- ══ COVER ══ -->
+  <div class="cover" id="top">
+    <div class="corner tl">✦</div>
+    <div class="corner tr">✦</div>
+    <div class="corner bl">✦</div>
+    <div class="corner br">✦</div>
+
+    <div class="cover-ornament">— ✦ —</div>
+    <h1>
+      <em>Carnet de</em>
+      Cuisine
+    </h1>
+    <div class="cover-divider"></div>
+    <p class="cover-subtitle">recettes simples &amp; savoureuses</p>
+    <p class="cover-year">MMXXV &nbsp;·&nbsp; édition personnelle</p>
+  </div>
+
+  <!-- ══ TABLE OF CONTENTS ══ -->
+  <div class="toc-page">
+    <div class="section-label">Sommaire</div>
+    <h2 class="toc-title">Au menu</h2>
+    <ul class="toc-list">
+      <li class="toc-item" onclick="document.getElementById('recette1').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">i.</span>
+        <span class="toc-item-title">Lentilles au saumon</span>
+        <span class="toc-item-sub">sauce moutarde aux herbes</span>
+        <span class="toc-dots"></span>
+        <span class="toc-tag">Salade</span>
+      </li>
+      <li class="toc-item" onclick="document.getElementById('recette2').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">ii.</span>
+        <span class="toc-item-title">Soupe de légumes d'hiver</span>
+        <span class="toc-item-sub">velouté au gingembre</span>
+        <span class="toc-dots"></span>
+        <span class="toc-tag">Soupe</span>
+      </li>
+      <li class="toc-item" onclick="document.getElementById('recette3').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">iii.</span>
+        <span class="toc-item-title">Poulet rôti aux herbes</span>
+        <span class="toc-item-sub">citron confit &amp; ail doux</span>
+        <span class="toc-dots"></span>
+        <span class="toc-tag">Plat</span>
+      </li>
+      <li class="toc-item" onclick="document.getElementById('recette4').scrollIntoView({behavior:'smooth'})">
+        <span class="toc-num">iv.</span>
+        <span class="toc-item-title">Tarte aux pommes rustique</span>
+        <span class="toc-item-sub">cannelle &amp; beurre salé</span>
+        <span class="toc-dots"></span>
+        <span class="toc-tag">Dessert</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- ══ RECETTE 1 — Lentilles au saumon ══ -->
+  <div class="recipe-page" id="recette1">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">01</div>
+        <div class="recipe-category">Entrée · Salade</div>
+        <h2 class="recipe-title">Lentilles au saumon</h2>
+        <p class="recipe-subtitle">sauce moutarde aux herbes fraîches</p>
+      </div>
+    </div>
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">15 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">25 min</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">2–3</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Salade</div>
+          <div class="ingredient-item"><span class="ingredient-qty">200 g</span><span class="ingredient-name">lentilles vertes</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">150 g</span><span class="ingredient-name">saumon fumé ou cuit</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">tomate ou 10 tomates cerises</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">½</span><span class="ingredient-name">concombre</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">échalote</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">qsp</span><span class="ingredient-name">aneth, ciboulette ou persil</span></div>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Sauce moutarde</div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">moutarde</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">vinaigre ou jus de citron</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">yaourt (optionnel)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel et poivre</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Rincer les lentilles, puis les cuire dans 3 volumes d'eau pendant 20 à 25 minutes jusqu'à ce qu'elles soient tendres mais encore fermes.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Égoutter les lentilles et laisser refroidir à température ambiante.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Couper la tomate et le concombre en petits dés. Émincer finement l'échalote. Couper le saumon en morceaux.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Préparer la sauce en mélangeant la moutarde, l'huile d'olive, le vinaigre, le yaourt et les herbes finement ciselées.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Dans un grand saladier, assembler les lentilles, le saumon et les légumes. Verser la sauce et mélanger délicatement.</p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Astuce du chef</div>
+      <p class="tip-text">Ajoutez un peu de zeste de citron râpé ou une pointe de miel dans la sauce pour apporter une touche de fraîcheur et de douceur. Se déguste aussi bien chaud que froid.</p>
+    </div>
+    <div class="page-num">p. 1</div>
+  </div>
+
+  <!-- ══ RECETTE 2 — Soupe de légumes ══ -->
+  <div class="recipe-page" id="recette2">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">02</div>
+        <div class="recipe-category">Entrée · Soupe</div>
+        <h2 class="recipe-title">Soupe de légumes d'hiver</h2>
+        <p class="recipe-subtitle">velouté parfumé au gingembre frais</p>
+      </div>
+    </div>
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">20 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">30 min</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">4</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Légumes</div>
+          <div class="ingredient-item"><span class="ingredient-qty">3</span><span class="ingredient-name">carottes</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2</span><span class="ingredient-name">patates douces</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">oignon</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 cm</span><span class="ingredient-name">gingembre frais râpé</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">gousse d'ail</span></div>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Bouillon &amp; finition</div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 L</span><span class="ingredient-name">bouillon de légumes</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">100 ml</span><span class="ingredient-name">crème de coco</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel, poivre, cumin</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Éplucher et couper les carottes, patates douces et oignon en morceaux. Émincer l'ail et râper le gingembre.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Faire revenir l'oignon et l'ail dans l'huile d'olive à feu moyen pendant 3 minutes. Ajouter le gingembre et le cumin, mélanger.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Incorporer les légumes, verser le bouillon et porter à ébullition. Réduire le feu et laisser mijoter 25 minutes.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Mixer finement jusqu'à obtenir un velouté lisse. Ajouter la crème de coco, assaisonner et réchauffer 2 minutes.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Servir chaud, garni d'un filet de crème de coco et de graines de courge grillées.</p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Astuce du chef</div>
+      <p class="tip-text">Pour une touche acidulée, ajoutez quelques gouttes de jus de citron vert juste avant de servir. Un zeste de citron vert râpé sur le dessus apportera une belle fraîcheur visuelle et gustative.</p>
+    </div>
+    <div class="page-num">p. 2</div>
+  </div>
+
+  <!-- ══ RECETTE 3 — Poulet rôti ══ -->
+  <div class="recipe-page" id="recette3">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">03</div>
+        <div class="recipe-category">Plat principal</div>
+        <h2 class="recipe-title">Poulet rôti aux herbes</h2>
+        <p class="recipe-subtitle">citron confit, ail doux &amp; romarin</p>
+      </div>
+    </div>
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">15 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">1h15</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">4</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Volaille</div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">poulet entier (~1,5 kg)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">citron confit ou frais</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">6</span><span class="ingredient-name">gousses d'ail entières</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">3</span><span class="ingredient-name">branches de romarin</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">qsp</span><span class="ingredient-name">thym frais</span></div>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Marinade</div>
+          <div class="ingredient-item"><span class="ingredient-qty">3 c.s.</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">paprika fumé</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">½ c.c.</span><span class="ingredient-name">curcuma</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty"></span><span class="ingredient-name">Sel de Guérande, poivre</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Préchauffer le four à 200 °C. Mélanger l'huile d'olive, le paprika, le curcuma, le sel et le poivre pour former la marinade.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Badigeonner généreusement le poulet, y compris sous la peau, avec la marinade. Laisser reposer 10 minutes.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Glisser dans la cavité du poulet le citron coupé en deux, les gousses d'ail et la moitié des herbes.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Disposer dans un plat à rôtir avec le reste des herbes autour. Enfourner 1h15, en arrosant toutes les 20 minutes.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Laisser reposer 10 minutes sous aluminium avant de découper et servir avec les sucs de cuisson.</p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Astuce du chef</div>
+      <p class="tip-text">Ajoutez des pommes de terre et des carottes autour du poulet en cours de cuisson pour un plat complet. L'ail rôti, une fois fondant, peut être écrasé sur du pain pour un régal supplémentaire.</p>
+    </div>
+    <div class="page-num">p. 3</div>
+  </div>
+
+  <!-- ══ RECETTE 4 — Tarte aux pommes ══ -->
+  <div class="recipe-page" id="recette4">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">04</div>
+        <div class="recipe-category">Dessert · Pâtisserie</div>
+        <h2 class="recipe-title">Tarte aux pommes rustique</h2>
+        <p class="recipe-subtitle">cannelle, beurre salé &amp; pâte dorée</p>
+      </div>
+    </div>
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">25 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">35 min</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">6</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Moyenne</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Pâte brisée</div>
+          <div class="ingredient-item"><span class="ingredient-qty">200 g</span><span class="ingredient-name">farine</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">100 g</span><span class="ingredient-name">beurre salé froid</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">pincée de sel</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">4–5 c.s.</span><span class="ingredient-name">eau froide</span></div>
+        </div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Garniture</div>
+          <div class="ingredient-item"><span class="ingredient-qty">4–5</span><span class="ingredient-name">pommes (Golden ou Reinette)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">60 g</span><span class="ingredient-name">sucre roux</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">cannelle moulue</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">30 g</span><span class="ingredient-name">beurre salé en morceaux</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">jaune d'œuf pour dorer</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Préchauffer le four à 190 °C. Mélanger la farine et le beurre froid coupé en dés du bout des doigts jusqu'à obtenir une texture sableuse. Ajouter l'eau progressivement pour former une boule. Réserver 20 min au frais.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Éplucher et couper les pommes en lamelles fines. Les mélanger avec le sucre roux et la cannelle.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Abaisser la pâte sur un papier sulfurisé en un disque irrégulier d'environ 30 cm. Disposer les pommes en rosace au centre en laissant 4 cm de bord.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Rabattre les bords de pâte sur les pommes. Répartir les morceaux de beurre sur les fruits. Dorer les bords au jaune d'œuf.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Enfourner 30 à 35 minutes jusqu'à ce que la pâte soit bien dorée. Servir tiède avec une boule de glace vanille.</p></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Astuce du chef</div>
+      <p class="tip-text">Badigeonnez la tarte encore chaude avec une cuillère à soupe de confiture d'abricot chauffée pour un nappage brillant et une touche de douceur supplémentaire.</p>
+    </div>
+    <div class="page-num">p. 4</div>
+  </div>
+
+  <!-- ══ BACK COVER ══ -->
+  <div class="back-cover">
+    <div class="back-ornament">✦</div>
+    <p>« La cuisine est l'art de transformer des ingrédients simples<br>en souvenirs impérissables. »</p>
+    <div class="back-ornament" style="font-size:1rem">— ✦ —</div>
+  </div>
+
+</div><!-- end .book -->
+</body>
+</html>
