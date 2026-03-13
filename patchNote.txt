@@ -14,3 +14,4 @@ v0.01.0 = polish retour sommaire
 Alpha
 
 v0.01.1 = ajout noix de cajou + update page de couverture
+v0.01.2 = polish titre + icone
