@@ -276,7 +276,10 @@ body {
   opacity: 0.5;
 }
 
-/* Coming soon placeholder in TOC */
+/* Scroll anchor offset — compense la recipe-nav sticky (52px) */
+.toc-item[id] {
+  scroll-margin-top: 24px;
+}
 .toc-coming-soon {
   display: flex;
   align-items: center;
