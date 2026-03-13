@@ -240,12 +240,14 @@
   .food-card.patate  { border-top: 3px solid #b87c3a; }
   .food-card.asperge { border-top: 3px solid #6b8c45; }
   .food-card.artichaut { border-top: 3px solid #5c7a50; }
+  .food-card.cajou   { border-top: 3px solid #a0622a; }
 
   .food-card.avocat  .food-potassium-fill { background: linear-gradient(to right, #4a7c2e, #7ab845); }
   .food-card.banane  .food-potassium-fill { background: linear-gradient(to right, #c9a84c, #e8c96a); }
   .food-card.patate  .food-potassium-fill { background: linear-gradient(to right, #b87c3a, #d4a060); }
   .food-card.asperge .food-potassium-fill { background: linear-gradient(to right, #6b8c45, #90b85a); }
   .food-card.artichaut .food-potassium-fill { background: linear-gradient(to right, #5c7a50, #7da870); }
+  .food-card.cajou   .food-potassium-fill { background: linear-gradient(to right, #a0622a, #d4924a); }
 
   /* Tableau comparatif */
   .compare-table {
@@ -353,7 +355,7 @@
     <div class="info-hero-label">Aliments riches · Fiche nutritionnelle</div>
     <div class="info-hero-code">006</div>
     <h1 class="info-hero-title">Riche en <em>potassium</em></h1>
-    <p class="info-hero-subtitle">avocat · banane · patate douce · asperge · artichaut</p>
+    <p class="info-hero-subtitle">noix de cajou · avocat · patate douce · artichaut · banane · asperge</p>
     <div class="info-hero-stat">
       <span class="info-hero-stat-num">2 000 mg</span>
       <span class="info-hero-stat-label">apport journalier recommandé</span>
@@ -364,11 +366,11 @@
   <div class="info-page">
 
     <p class="info-intro">
-      Le potassium est un minéral essentiel qui régule la pression artérielle, soutient la fonction musculaire et favorise l'équilibre hydrique de l'organisme. Ces cinq aliments en sont parmi les meilleures sources naturelles — à intégrer facilement dans une alimentation quotidienne.
+      Le potassium est un minéral essentiel qui régule la pression artérielle, soutient la fonction musculaire et favorise l'équilibre hydrique de l'organisme. Ces six aliments en sont parmi les meilleures sources naturelles — à intégrer facilement dans une alimentation quotidienne.
     </p>
 
     <!-- Fiches aliments -->
-    <div class="info-section-label">Les 5 aliments</div>
+    <div class="info-section-label">Les 6 aliments</div>
 
     <div class="food-grid">
 
@@ -512,6 +514,34 @@
         </div>
       </div>
 
+      <!-- Noix de cajou -->
+      <div class="food-card cajou">
+        <div class="food-card-header">
+          <span class="food-emoji">🥜</span>
+          <div class="food-card-meta">
+            <div class="food-name">Noix de cajou</div>
+            <div class="food-latin">Anacardium occidentale</div>
+          </div>
+        </div>
+        <div class="food-potassium-bar">
+          <div class="food-potassium-fill" style="width:100%"></div>
+        </div>
+        <div class="food-card-body">
+          <div class="food-stat-row">
+            <span class="food-stat-num">565</span>
+            <span class="food-stat-unit">mg / 100 g</span>
+            <span class="food-stat-ref">≈ 28 % AJR</span>
+          </div>
+          <p class="food-desc">La plus riche en potassium de cette sélection. La noix de cajou cumule magnésium, zinc, fer et tryptophane — précurseur de la sérotonine. Une poignée de 30 g suffit à couvrir près de 10 % de l'AJR en potassium tout en apportant des graisses insaturées cardioprotectrices.</p>
+          <div class="food-tags">
+            <span class="food-tag">Cru ou grillé</span>
+            <span class="food-tag">Magnésium</span>
+            <span class="food-tag">Zinc</span>
+            <span class="food-tag">Sérotonine</span>
+          </div>
+        </div>
+      </div>
+
     </div><!-- end food-grid -->
 
     <!-- Tableau comparatif -->
@@ -528,33 +558,39 @@
       </thead>
       <tbody>
         <tr>
+          <td><span class="td-emoji">🥜</span> <strong>Noix de cajou</strong></td>
+          <td class="td-highlight">565 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:100%"></div></div></td>
+          <td>28 %</td>
+        </tr>
+        <tr>
           <td><span class="td-emoji">🥑</span> <strong>Avocat</strong></td>
           <td class="td-highlight">485 mg</td>
-          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:88%"></div></div></td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:86%"></div></div></td>
           <td>24 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🍠</span> <strong>Patate douce</strong></td>
           <td class="td-highlight">475 mg</td>
-          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:86%"></div></div></td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:84%"></div></div></td>
           <td>24 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🌿</span> <strong>Artichaut</strong></td>
           <td class="td-highlight">370 mg</td>
-          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:67%"></div></div></td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:65%"></div></div></td>
           <td>19 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🍌</span> <strong>Banane</strong></td>
           <td class="td-highlight">358 mg</td>
-          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:65%"></div></div></td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:63%"></div></div></td>
           <td>18 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🌱</span> <strong>Asperge</strong></td>
           <td class="td-highlight">202 mg</td>
-          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:37%"></div></div></td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:36%"></div></div></td>
           <td>10 %</td>
         </tr>
       </tbody>
