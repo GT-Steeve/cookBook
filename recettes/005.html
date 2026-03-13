@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>005 · Detox Beauty Privilège — Carnet de Cuisine</title>
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+  /* Badge bienfaits */
+  .benefits-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 28px 0 0;
+  }
+  .benefit-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 14px;
+    border: 1px solid rgba(92,107,58,0.3);
+    border-radius: 20px;
+    background: var(--light-olive);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.92rem;
+    color: var(--olive);
+  }
+  .benefit-badge span { font-size: 1rem; }
+
+  /* Deux versions côte à côte */
+  .version-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 8px;
+  }
+  .version-card {
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .version-card.hot {
+    border: 1px solid rgba(155,69,33,0.25);
+  }
+  .version-card.cold {
+    border: 1px solid rgba(92,107,58,0.25);
+  }
+  .version-header {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .version-card.hot  .version-header { background: rgba(155,69,33,0.08); }
+  .version-card.cold .version-header { background: rgba(92,107,58,0.08); }
+  .version-icon { font-size: 1.3rem; }
+  .version-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--warm-brown);
+  }
+  .version-temp {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-left: auto;
+  }
+  .version-card.hot  .version-temp { color: var(--rust); }
+  .version-card.cold .version-temp { color: var(--olive); }
+  .version-body { padding: 16px 20px 20px; }
+  .version-card .step { gap: 12px; margin-bottom: 12px; }
+  .version-card .step-num { font-size: 1.4rem; min-width: 26px; }
+  .version-card .step-text { font-size: 0.96rem; line-height: 1.65; }
+
+  .version-section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin: 40px 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .version-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, var(--rust), transparent);
+    opacity: 0.3;
+  }
+
+  @media (max-width: 580px) {
+    .version-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html">&#8592; Retour au sommaire</a>
+    <span class="nav-code">005</span>
+  </nav>
+
+  <div class="recipe-page">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">005</div>
+        <div class="recipe-category">Detox · Boisson bien-être</div>
+        <h1 class="recipe-title">Detox Beauty Privilège</h1>
+        <p class="recipe-subtitle">thé vert, curcuma, gingembre &amp; vinaigre de cidre</p>
+      </div>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">5 min</span></div>
+      <div class="meta-item"><span class="meta-label">Infusion</span><span class="meta-value">5–10 min</span></div>
+      <div class="meta-item"><span class="meta-label">Quantité</span><span class="meta-value">1 tasse / verre</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Très facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <!-- Ingrédients -->
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Base</div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">sachet de thé vert (ou 1 c.c. en vrac)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">250 ml</span><span class="ingredient-name">eau chaude (80 °C) ou froide filtrée</span></div>
+        </div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Épices &amp; actifs</div>
+          <div class="ingredient-item"><span class="ingredient-qty">¼ c.c.</span><span class="ingredient-name">curcuma en poudre</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 pincée</span><span class="ingredient-name">poivre noir (active le curcuma)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">¼ c.c.</span><span class="ingredient-name">cannelle moulue</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">gingembre frais râpé (ou ⅛ c.c. en poudre)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">vinaigre de cidre non filtré</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 c.c.</span><span class="ingredient-name">miel (de préférence cru)</span></div>
+        </div>
+      </div>
+
+      <!-- Bienfaits -->
+      <div>
+        <div class="col-title"><span>✨</span> Bienfaits</div>
+        <div class="benefits-grid">
+          <div class="benefit-badge"><span>🍵</span> Thé vert — antioxydants, drainage</div>
+          <div class="benefit-badge"><span>🟡</span> Curcuma — anti-inflammatoire</div>
+          <div class="benefit-badge"><span>⚫</span> Poivre — absorption du curcuma ×20</div>
+          <div class="benefit-badge"><span>🍂</span> Cannelle — glycémie, digestion</div>
+          <div class="benefit-badge"><span>🫚</span> Gingembre — circulation, immunité</div>
+          <div class="benefit-badge"><span>🍎</span> Vinaigre de cidre — détox, transit</div>
+          <div class="benefit-badge"><span>🍯</span> Miel — adoucissant, antibactérien</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Deux versions -->
+    <div class="version-section-label">Deux versions</div>
+
+    <div class="version-grid">
+
+      <!-- VERSION CHAUDE -->
+      <div class="version-card hot">
+        <div class="version-header">
+          <span class="version-icon">☕</span>
+          <span class="version-title">Version chaude</span>
+          <span class="version-temp">Infusion</span>
+        </div>
+        <div class="version-body">
+          <div class="step"><span class="step-num">1</span><p class="step-text">Faire chauffer l'eau à environ 80 °C (ne pas faire bouillir pour préserver les antioxydants du thé vert).</p></div>
+          <div class="step"><span class="step-num">2</span><p class="step-text">Infuser le thé vert 5 min, puis retirer le sachet ou filtrer.</p></div>
+          <div class="step"><span class="step-num">3</span><p class="step-text">Ajouter le curcuma, le poivre, la cannelle et le gingembre. Mélanger.</p></div>
+          <div class="step"><span class="step-num">4</span><p class="step-text">Ajouter le vinaigre de cidre et le miel. Mélanger jusqu'à dissolution complète.</p></div>
+          <div class="step"><span class="step-num">5</span><p class="step-text">Boire chaud, de préférence le matin à jeun.</p></div>
+        </div>
+      </div>
+
+      <!-- VERSION FROIDE -->
+      <div class="version-card cold">
+        <div class="version-header">
+          <span class="version-icon">🧊</span>
+          <span class="version-title">Version froide</span>
+          <span class="version-temp">Cold brew</span>
+        </div>
+        <div class="version-body">
+          <div class="step"><span class="step-num">1</span><p class="step-text">Infuser le thé vert dans 250 ml d'eau froide pendant 8 à 10 heures au réfrigérateur (cold brew).</p></div>
+          <div class="step"><span class="step-num">2</span><p class="step-text">Filtrer le thé. Ajouter le curcuma, le poivre, la cannelle et le gingembre. Bien mélanger.</p></div>
+          <div class="step"><span class="step-num">3</span><p class="step-text">Ajouter le vinaigre de cidre. Dissoudre le miel dans un fond d'eau tiède avant de l'incorporer.</p></div>
+          <div class="step"><span class="step-num">4</span><p class="step-text">Servir sur des glaçons. Se conserve 24 h au réfrigérateur dans un bocal hermétique.</p></div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="tip-box" style="margin-top:28px;">
+      <div class="tip-label">✦ Conseil bien-être</div>
+      <p class="tip-text">Pour une cure efficace, consommer cette boisson chaque matin à jeun pendant 2 à 3 semaines. Le poivre noir est indispensable : il multiplie l'absorption de la curcumine par 20. Choisir un vinaigre de cidre non filtré « avec la mère » pour conserver tous ses actifs.</p>
+    </div>
+
+    <div class="page-num">recette n° 005</div>
+  </div>
+
+</div>
+</body>
+</html>

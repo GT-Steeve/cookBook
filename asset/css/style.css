@@ -276,9 +276,23 @@ body {
   opacity: 0.5;
 }
 
-/* ═══════════════════════════════════════════
-   PAGES RECETTES (recettes/NNN.html)
-   ═══════════════════════════════════════════ */
+/* Coming soon placeholder in TOC */
+.toc-coming-soon {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(122,106,85,0.45);
+  border-bottom: 1px dashed rgba(61,43,26,0.08);
+  list-style: none;
+}
+.toc-coming-icon {
+  font-size: 0.6rem;
+  color: rgba(201,168,76,0.35);
+}
 
 /* Navigation retour */
 .recipe-nav {

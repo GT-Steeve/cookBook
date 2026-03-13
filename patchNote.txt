@@ -6,3 +6,4 @@ v0.00.3 = ajout readME + Licence + séparation css
 v0.00.4 = structuration du projet
 v0.00.5 = new recette Chili mexicain aux légumes grillés
 v0.00.6 = ajout section sauce + new sauce vinaigrette et mayonaise
+v0.00.7 = ajout recette detox
