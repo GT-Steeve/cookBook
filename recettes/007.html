@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>007 · Hydratation Sport — Carnet de Cuisine</title>
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+
+  /* ── Hero bannière ── */
+  .info-hero {
+    background: linear-gradient(135deg, #1a3a5c 0%, #1e4a75 55%, #235580 100%);
+    padding: 48px 60px 44px 84px;
+    position: relative;
+    overflow: hidden;
+  }
+  .info-hero::before {
+    content: '~';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 14rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .info-hero-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(220,235,255,0.55);
+    margin-bottom: 10px;
+  }
+  .info-hero-code {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 3.5rem;
+    color: rgba(201,168,76,0.18);
+    line-height: 1;
+    margin-bottom: -6px;
+  }
+  .info-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    font-weight: 400;
+    color: #dceeff;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+  .info-hero-title em {
+    font-style: italic;
+    color: #7ec8e3;
+  }
+  .info-hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: rgba(220,235,255,0.55);
+  }
+  .info-hero-stats {
+    margin-top: 22px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .info-hero-stat {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(126,200,227,0.2);
+    border-radius: 6px;
+    padding: 10px 18px;
+  }
+  .info-hero-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #7ec8e3;
+  }
+  .info-hero-stat-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.68rem;
+    color: rgba(220,235,255,0.5);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── Corps ── */
+  .info-page {
+    padding: 52px 60px 80px 84px;
+    background: var(--cream);
+    position: relative;
+  }
+  .info-page::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #1e4a75, #7ec8e3, #1e4a75);
+    opacity: 0.3;
+  }
+
+  .info-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    line-height: 1.85;
+    color: #2a1f12;
+    max-width: 640px;
+    margin-bottom: 44px;
+    border-left: 3px solid #7ec8e3;
+    padding-left: 20px;
+  }
+
+  .info-section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #1e4a75;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .info-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, #1e4a75, transparent);
+    opacity: 0.3;
+  }
+
+  /* ── Recette / ingrédients ── */
+  .recipe-block {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 40px;
+    margin-bottom: 48px;
+  }
+
+  /* Ingrédients */
+  .ingredient-group-title {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #1e4a75;
+    margin-bottom: 10px;
+  }
+  .ingredient-item {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px dotted rgba(61,43,26,0.12);
+    font-size: 1rem;
+    line-height: 1.4;
+  }
+  .ingredient-qty {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.82rem;
+    color: #1e4a75;
+    min-width: 64px;
+    text-align: right;
+  }
+  .ingredient-name { color: var(--ink); }
+  .col-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--warm-brown);
+    margin-bottom: 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #7ec8e3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  /* Étapes */
+  .step { display: flex; gap: 20px; margin-bottom: 20px; }
+  .step-num {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: #7ec8e3;
+    opacity: 0.7;
+    min-width: 36px;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .step-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.08rem;
+    line-height: 1.75;
+    color: #2a1f12;
+    padding-top: 4px;
+  }
+
+  /* ── Fiches ingrédients ── */
+  .food-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 48px;
+  }
+  .food-card {
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid rgba(30,74,117,0.12);
+    transition: box-shadow 0.2s;
+  }
+  .food-card:hover { box-shadow: 0 4px 18px rgba(30,74,117,0.1); }
+  .food-card.eau    { border-top: 3px solid #7ec8e3; }
+  .food-card.sel    { border-top: 3px solid #a8b8c8; }
+  .food-card.citron { border-top: 3px solid #e8c84c; }
+
+  .food-card-header {
+    padding: 16px 18px 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .food-emoji { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+  .food-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    color: var(--warm-brown);
+    margin-bottom: 2px;
+  }
+  .food-latin {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .food-card-body { padding: 0 18px 16px; }
+  .food-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.97rem;
+    line-height: 1.65;
+    color: #3a2d1e;
+    margin-bottom: 12px;
+  }
+  .food-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .food-tag {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 3px 9px;
+    border-radius: 20px;
+    background: #e8f2fa;
+    color: #1e4a75;
+  }
+
+  /* ── Tableau quand boire ── */
+  .timing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .timing-card {
+    border-radius: 8px;
+    padding: 20px 18px;
+    text-align: center;
+    border: 1px solid rgba(30,74,117,0.1);
+  }
+  .timing-card.avant  { background: #edf6fb; border-top: 3px solid #7ec8e3; }
+  .timing-card.pendant { background: #e8f0f8; border-top: 3px solid #1e4a75; }
+  .timing-card.apres  { background: #f0f5ea; border-top: 3px solid #4a7c2e; }
+  .timing-icon { font-size: 1.8rem; margin-bottom: 10px; }
+  .timing-moment {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #1e4a75;
+    margin-bottom: 8px;
+  }
+  .timing-qty {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--warm-brown);
+    margin-bottom: 6px;
+  }
+  .timing-desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ── Conseil ── */
+  .info-tip {
+    background: #edf6fb;
+    border: 1px solid rgba(126,200,227,0.4);
+    border-left: 4px solid #1e4a75;
+    padding: 20px 24px;
+    border-radius: 0 6px 6px 0;
+  }
+  .info-tip-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #1e4a75;
+    margin-bottom: 8px;
+  }
+  .info-tip-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .page-num {
+    text-align: right;
+    margin-top: 40px;
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: rgba(61,43,26,0.35);
+  }
+
+  @media (max-width: 640px) {
+    .info-hero, .info-page { padding-left: 32px; padding-right: 24px; }
+    .info-hero::before { display: none; }
+    .recipe-block, .food-grid, .timing-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html">&#8592; Retour au sommaire</a>
+    <span class="nav-code">007</span>
+  </nav>
+
+  <!-- Hero -->
+  <div class="info-hero">
+    <div class="info-hero-label">Detox · Boisson isotonique</div>
+    <div class="info-hero-code">007</div>
+    <h1 class="info-hero-title">Hydratation <em>Sport</em></h1>
+    <p class="info-hero-subtitle">eau · sel de mer · citron</p>
+    <div class="info-hero-stats">
+      <div class="info-hero-stat">
+        <span class="info-hero-stat-num">500 ml</span>
+        <span class="info-hero-stat-label">par portion</span>
+      </div>
+      <div class="info-hero-stat">
+        <span class="info-hero-stat-num">~5 min</span>
+        <span class="info-hero-stat-label">préparation</span>
+      </div>
+      <div class="info-hero-stat">
+        <span class="info-hero-stat-num">isotonique</span>
+        <span class="info-hero-stat-label">concentration</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Corps -->
+  <div class="info-page">
+
+    <p class="info-intro">
+      Une boisson isotonique maison, sans sucre ajouté ni colorants. Le sel de mer compense les pertes en sodium et en chlorure dues à la transpiration, tandis que le citron apporte vitamine C et potassium. Idéale pour un effort de 30 min à 1h30.
+    </p>
+
+    <!-- Recette -->
+    <div class="info-section-label">Recette</div>
+
+    <div class="recipe-block">
+      <div>
+        <div class="col-title"><span>💧</span> Ingrédients</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Pour 500 ml</div>
+          <div class="ingredient-item">
+            <span class="ingredient-qty">500 ml</span>
+            <span class="ingredient-name">eau filtrée ou de source</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ingredient-qty">1 pincée</span>
+            <span class="ingredient-name">sel de mer non raffiné (~0,5 g)</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ingredient-qty">½</span>
+            <span class="ingredient-name">citron pressé (~30 ml de jus)</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ingredient-qty">optionnel</span>
+            <span class="ingredient-name">quelques feuilles de menthe</span>
+          </div>
+          <div class="ingredient-item">
+            <span class="ingredient-qty">optionnel</span>
+            <span class="ingredient-name">1 c.c. de miel (effort long)</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="col-title"><span>🥤</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Verser l'eau dans une gourde ou un grand verre. Utiliser de l'eau à température ambiante — l'eau trop froide ralentit l'absorption.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter la pincée de sel de mer et mélanger jusqu'à dissolution complète.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Presser le demi-citron et filtrer le jus avant de l'incorporer.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Pour un effort supérieur à 1h, ajouter une cuillère à café de miel pour l'apport en glucides rapides. Mélanger.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Conserver au frais. Se prépare idéalement la veille au soir pour le lendemain matin.</p></div>
+      </div>
+    </div>
+
+    <!-- Fiches ingrédients -->
+    <div class="info-section-label">Les 3 actifs</div>
+
+    <div class="food-grid">
+
+      <div class="food-card eau">
+        <div class="food-card-header">
+          <span class="food-emoji">💧</span>
+          <div>
+            <div class="food-name">Eau</div>
+            <div class="food-latin">H₂O — vecteur universel</div>
+          </div>
+        </div>
+        <div class="food-card-body">
+          <p class="food-desc">Composante principale du plasma sanguin, elle transporte nutriments et oxygène vers les muscles. Une perte de 2 % du poids corporel en eau suffit à réduire les performances de 20 %.</p>
+          <div class="food-tags">
+            <span class="food-tag">Thermorégulation</span>
+            <span class="food-tag">Transport O₂</span>
+            <span class="food-tag">Viscosité sanguine</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card sel">
+        <div class="food-card-header">
+          <span class="food-emoji">🧂</span>
+          <div>
+            <div class="food-name">Sel de mer</div>
+            <div class="food-latin">NaCl + oligo-éléments</div>
+          </div>
+        </div>
+        <div class="food-card-body">
+          <p class="food-desc">Le sodium perdu dans la sueur est le minéral le plus critique à compenser. Sans lui, l'eau ingérée est éliminée plus vite et les crampes musculaires surviennent. Le sel de mer non raffiné apporte aussi magnésium et potassium.</p>
+          <div class="food-tags">
+            <span class="food-tag">Sodium</span>
+            <span class="food-tag">Anti-crampes</span>
+            <span class="food-tag">Rétention hydrique</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="food-card citron">
+        <div class="food-card-header">
+          <span class="food-emoji">🍋</span>
+          <div>
+            <div class="food-name">Citron</div>
+            <div class="food-latin">Citrus limon</div>
+          </div>
+        </div>
+        <div class="food-card-body">
+          <p class="food-desc">Source de vitamine C antioxydante qui protège les cellules du stress oxydatif généré par l'effort. Son potassium complète le sel de mer. Son acidité naturelle ralentit la vidange gastrique et améliore l'absorption de l'eau.</p>
+          <div class="food-tags">
+            <span class="food-tag">Vitamine C</span>
+            <span class="food-tag">Potassium</span>
+            <span class="food-tag">Antioxydant</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quand boire -->
+    <div class="info-section-label">Quand boire</div>
+
+    <div class="timing-grid">
+      <div class="timing-card avant">
+        <div class="timing-icon">⏱️</div>
+        <div class="timing-moment">Avant l'effort</div>
+        <div class="timing-qty">250 ml</div>
+        <p class="timing-desc">30 min avant l'entraînement pour pré-hydrater les muscles et réduire le risque de crampes.</p>
+      </div>
+      <div class="timing-card pendant">
+        <div class="timing-icon">🏃</div>
+        <div class="timing-moment">Pendant l'effort</div>
+        <div class="timing-qty">150 ml / 20 min</div>
+        <p class="timing-desc">Petites gorgées régulières. Éviter de boire trop d'un coup pour ne pas alourdir l'estomac.</p>
+      </div>
+      <div class="timing-card apres">
+        <div class="timing-icon">🧘</div>
+        <div class="timing-moment">Après l'effort</div>
+        <div class="timing-qty">500 ml+</div>
+        <p class="timing-desc">Compenser les pertes dès la fin de l'effort. Ajouter le miel pour la récupération glycogénique.</p>
+      </div>
+    </div>
+
+    <div class="info-tip">
+      <div class="info-tip-label">✦ Conseil sport</div>
+      <p class="info-tip-text">Une boisson isotonique doit avoir une concentration en minéraux proche de celle du sang (±290 mOsm/L). Cette recette y est fidèle sans additifs. Pour un effort intense dépassant 1h30, doubler la quantité de sel et ajouter le miel pour maintenir la glycémie.</p>
+    </div>
+
+    <div class="page-num">fiche n° 007</div>
+  </div>
+
+</div>
+</body>
+</html>
