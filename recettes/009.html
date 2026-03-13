@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>009 · Eau fruits rouges – menthe — Carnet de Cuisine</title>
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+  :root {
+    --hero-dark:  #4a0a1a;
+    --hero-mid:   #7a1a30;
+    --hero-light: #9e2840;
+    --accent:     #d4406a;
+    --accent-soft:#fdf0f3;
+    --accent-tag: #7a1a30;
+    --bar-from:   #d4406a;
+    --bar-to:     #f08098;
+  }
+  .info-hero {
+    background: linear-gradient(135deg, var(--hero-dark) 0%, var(--hero-mid) 55%, var(--hero-light) 100%);
+    padding: 48px 60px 44px 84px; position: relative; overflow: hidden;
+  }
+  .info-hero::before {
+    content: '✦'; position: absolute; right: 52px; top: 50%; transform: translateY(-50%);
+    font-size: 12rem; color: rgba(255,255,255,0.04); pointer-events: none; line-height: 1;
+  }
+  .info-hero-label { font-family: 'Libre Baskerville', serif; font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: rgba(255,220,230,0.55); margin-bottom: 10px; }
+  .info-hero-code { font-family: 'Playfair Display', serif; font-style: italic; font-size: 3.5rem; color: rgba(212,64,106,0.2); line-height: 1; margin-bottom: -6px; }
+  .info-hero-title { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 400; color: #ffe0e8; line-height: 1.15; margin-bottom: 10px; }
+  .info-hero-title em { font-style: italic; color: var(--accent); }
+  .info-hero-subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: rgba(255,220,230,0.55); }
+  .info-hero-stats { margin-top: 22px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .info-hero-stat { display: inline-flex; align-items: baseline; gap: 8px; background: rgba(255,255,255,0.07); border: 1px solid rgba(212,64,106,0.22); border-radius: 6px; padding: 10px 18px; }
+  .info-hero-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #f08098; }
+  .info-hero-stat-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; color: rgba(255,220,230,0.5); letter-spacing: 0.08em; }
+
+  .info-page { padding: 52px 60px 80px 84px; background: var(--cream); position: relative; }
+  .info-page::after { content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px; background: linear-gradient(to bottom, var(--hero-dark), var(--accent), var(--hero-dark)); opacity: 0.3; }
+  .info-intro { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: #2a1f12; max-width: 640px; margin-bottom: 44px; border-left: 3px solid var(--accent); padding-left: 20px; }
+  .info-section-label { font-family: 'Libre Baskerville', serif; font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent-tag); margin-bottom: 24px; display: flex; align-items: center; gap: 14px; }
+  .info-section-label::after { content: ''; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent-tag), transparent); opacity: 0.3; }
+
+  .recipe-block { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+  .col-title { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 400; color: var(--warm-brown); margin-bottom: 18px; padding-bottom: 8px; border-bottom: 1px solid var(--accent); display: flex; align-items: center; gap: 10px; }
+  .ingredient-group-title { font-family: 'Libre Baskerville', serif; font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-tag); margin-bottom: 10px; }
+  .ingredient-item { display: flex; align-items: baseline; gap: 10px; padding: 7px 0; border-bottom: 1px dotted rgba(61,43,26,0.12); font-size: 1rem; line-height: 1.4; }
+  .ingredient-qty { font-family: 'Libre Baskerville', serif; font-size: 0.82rem; color: var(--accent-tag); min-width: 64px; text-align: right; }
+  .ingredient-name { color: var(--ink); }
+  .step { display: flex; gap: 20px; margin-bottom: 20px; }
+  .step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2rem; color: var(--accent); opacity: 0.65; min-width: 36px; line-height: 1; flex-shrink: 0; }
+  .step-text { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.75; color: #2a1f12; padding-top: 4px; }
+
+  .virtue-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 18px; margin-bottom: 48px; }
+  .virtue-card { border-radius: 8px; border: 1px solid rgba(122,26,48,0.12); border-top: 3px solid var(--accent); overflow: hidden; transition: box-shadow 0.2s; }
+  .virtue-card:hover { box-shadow: 0 4px 18px rgba(122,26,48,0.1); }
+  .virtue-card-header { padding: 16px 18px 10px; display: flex; align-items: flex-start; gap: 12px; }
+  .virtue-emoji { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+  .virtue-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--warm-brown); margin-bottom: 2px; }
+  .virtue-latin { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.82rem; color: var(--muted); }
+  .virtue-bar { height: 3px; margin: 0 18px; background: rgba(61,43,26,0.08); border-radius: 2px; overflow: hidden; }
+  .virtue-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(to right, var(--bar-from), var(--bar-to)); }
+  .virtue-body { padding: 12px 18px 16px; }
+  .virtue-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.97rem; line-height: 1.65; color: #3a2d1e; margin-bottom: 12px; }
+  .virtue-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .virtue-tag { font-family: 'Libre Baskerville', serif; font-size: 0.6rem; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 20px; background: var(--accent-soft); color: var(--accent-tag); }
+
+  .info-tip { background: var(--accent-soft); border: 1px solid rgba(212,64,106,0.25); border-left: 4px solid var(--accent); padding: 20px 24px; border-radius: 0 6px 6px 0; }
+  .info-tip-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-tag); margin-bottom: 8px; }
+  .info-tip-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--muted); line-height: 1.7; }
+  .page-num { text-align: right; margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: rgba(61,43,26,0.35); }
+
+  @media (max-width: 640px) {
+    .info-hero, .info-page { padding-left: 32px; padding-right: 24px; }
+    .info-hero::before { display: none; }
+    .recipe-block { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html">&#8592; Retour au sommaire</a>
+    <span class="nav-code">009</span>
+  </nav>
+
+  <div class="info-hero">
+    <div class="info-hero-label">Detox · Eau infusée</div>
+    <div class="info-hero-code">009</div>
+    <h1 class="info-hero-title">Eau <em>fruits rouges – menthe</em></h1>
+    <p class="info-hero-subtitle">antioxydants · fraîcheur · beauté</p>
+    <div class="info-hero-stats">
+      <div class="info-hero-stat"><span class="info-hero-stat-num">1 L</span><span class="info-hero-stat-label">par préparation</span></div>
+      <div class="info-hero-stat"><span class="info-hero-stat-num">2h min</span><span class="info-hero-stat-label">d'infusion</span></div>
+      <div class="info-hero-stat"><span class="info-hero-stat-num">antioxydant</span><span class="info-hero-stat-label">pouvoir ORAC élevé</span></div>
+    </div>
+  </div>
+
+  <div class="info-page">
+
+    <p class="info-intro">
+      Les fruits rouges comptent parmi les aliments les plus riches en antioxydants de la nature. Infusés dans l'eau froide avec la menthe, ils libèrent leurs polyphénols et anthocyanes sans chaleur, préservant ainsi leurs propriétés anti-âge et anti-inflammatoires intactes.
+    </p>
+
+    <div class="info-section-label">Recette</div>
+    <div class="recipe-block">
+      <div>
+        <div class="col-title"><span>🍓</span> Ingrédients</div>
+        <div class="ingredient-group-title">Pour 1 litre</div>
+        <div class="ingredient-item"><span class="ingredient-qty">1 L</span><span class="ingredient-name">eau filtrée froide</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">80 g</span><span class="ingredient-name">fraises coupées en deux</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">50 g</span><span class="ingredient-name">framboises fraîches ou surgelées</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">40 g</span><span class="ingredient-name">myrtilles</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">8</span><span class="ingredient-name">feuilles de menthe fraîche</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">optionnel</span><span class="ingredient-name">quelques rondelles de citron</span></div>
+      </div>
+      <div>
+        <div class="col-title"><span>🥤</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Rincer soigneusement tous les fruits et les feuilles de menthe.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Couper les fraises en deux pour libérer plus de jus et d'arômes lors de l'infusion.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Froisser légèrement les feuilles de menthe entre les paumes pour activer leurs huiles essentielles avant de les déposer dans le pichet.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Placer tous les fruits et la menthe dans un pichet. Verser l'eau froide par-dessus.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Réfrigérer minimum 2 heures. Une nuit entière donne une couleur rosée intense et une saveur plus concentrée. Se conserve 48 heures au frais.</p></div>
+      </div>
+    </div>
+
+    <div class="info-section-label">Vertus des ingrédients</div>
+    <div class="virtue-grid">
+      <div class="virtue-card">
+        <div class="virtue-card-header"><span class="virtue-emoji">🍓</span><div><div class="virtue-name">Fruits rouges</div><div class="virtue-latin">Fraise, framboise, myrtille</div></div></div>
+        <div class="virtue-bar"><div class="virtue-bar-fill" style="width:95%"></div></div>
+        <div class="virtue-body">
+          <p class="virtue-desc">Exceptionnellement riches en anthocyanes, ces pigments rouges et bleus neutralisent les radicaux libres responsables du vieillissement cellulaire. Ils protègent la peau, la vision et le système cardiovasculaire.</p>
+          <div class="virtue-tags"><span class="virtue-tag">Anthocyanes</span><span class="virtue-tag">Anti-âge</span><span class="virtue-tag">Vitamine C</span><span class="virtue-tag">Cardiovasculaire</span></div>
+        </div>
+      </div>
+      <div class="virtue-card">
+        <div class="virtue-card-header"><span class="virtue-emoji">🌿</span><div><div class="virtue-name">Menthe</div><div class="virtue-latin">Mentha × piperita</div></div></div>
+        <div class="virtue-bar"><div class="virtue-bar-fill" style="width:78%"></div></div>
+        <div class="virtue-body">
+          <p class="virtue-desc">Le menthol qu'elle contient rafraîchit, apaise les spasmes digestifs et stimule la production de bile. Elle facilite la digestion des graisses et apporte une sensation de légèreté immédiate.</p>
+          <div class="virtue-tags"><span class="virtue-tag">Digestion</span><span class="virtue-tag">Rafraîchissante</span><span class="virtue-tag">Menthol</span><span class="virtue-tag">Antispasmodique</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-tip">
+      <div class="info-tip-label">✦ Conseil détox</div>
+      <p class="info-tip-text">Les fruits surgelés sont tout aussi efficaces que les fruits frais — le choc thermique de la décongélation rompt les parois cellulaires et libère encore plus de polyphénols dans l'eau. Remplir le pichet 2 à 3 fois avec les mêmes fruits avant de les remplacer.</p>
+    </div>
+    <div class="page-num">fiche n° 009</div>
+  </div>
+</div>
+</body>
+</html>

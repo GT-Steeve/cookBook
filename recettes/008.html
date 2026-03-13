@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>008 · Eau citron – gingembre — Carnet de Cuisine</title>
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+  :root {
+    --hero-dark:  #4a2a08;
+    --hero-mid:   #7a4510;
+    --hero-light: #a86020;
+    --accent:     #e8a030;
+    --accent-soft:#fdf0d8;
+    --accent-tag: #7a4510;
+    --bar-from:   #e8a030;
+    --bar-to:     #f5d080;
+  }
+  /* ── shared detox layout ── */
+  .info-hero {
+    background: linear-gradient(135deg, var(--hero-dark) 0%, var(--hero-mid) 55%, var(--hero-light) 100%);
+    padding: 48px 60px 44px 84px;
+    position: relative;
+    overflow: hidden;
+  }
+  .info-hero::before {
+    content: '✦';
+    position: absolute;
+    right: 52px; top: 50%;
+    transform: translateY(-50%);
+    font-size: 12rem;
+    color: rgba(255,255,255,0.04);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .info-hero-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase;
+    color: rgba(255,240,210,0.55); margin-bottom: 10px;
+  }
+  .info-hero-code {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 3.5rem; color: rgba(232,160,48,0.18); line-height: 1; margin-bottom: -6px;
+  }
+  .info-hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 400;
+    color: #fff5e0; line-height: 1.15; margin-bottom: 10px;
+  }
+  .info-hero-title em { font-style: italic; color: var(--accent); }
+  .info-hero-subtitle {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.1rem; color: rgba(255,240,210,0.55);
+  }
+  .info-hero-stats { margin-top: 22px; display: flex; gap: 14px; flex-wrap: wrap; }
+  .info-hero-stat {
+    display: inline-flex; align-items: baseline; gap: 8px;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(232,160,48,0.22); border-radius: 6px; padding: 10px 18px;
+  }
+  .info-hero-stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--accent); }
+  .info-hero-stat-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; color: rgba(255,240,210,0.5); letter-spacing: 0.08em; }
+
+  .info-page { padding: 52px 60px 80px 84px; background: var(--cream); position: relative; }
+  .info-page::after {
+    content: ''; position: absolute; right: 0; top: 0; bottom: 0; width: 4px;
+    background: linear-gradient(to bottom, var(--hero-dark), var(--accent), var(--hero-dark));
+    opacity: 0.3;
+  }
+  .info-intro {
+    font-family: 'Cormorant Garamond', serif; font-size: 1.15rem;
+    line-height: 1.85; color: #2a1f12; max-width: 640px; margin-bottom: 44px;
+    border-left: 3px solid var(--accent); padding-left: 20px;
+  }
+  .info-section-label {
+    font-family: 'Libre Baskerville', serif; font-size: 0.65rem;
+    letter-spacing: 0.32em; text-transform: uppercase; color: var(--accent-tag);
+    margin-bottom: 24px; display: flex; align-items: center; gap: 14px;
+  }
+  .info-section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--accent-tag), transparent); opacity: 0.3;
+  }
+
+  /* recette */
+  .recipe-block { display: grid; grid-template-columns: 1fr 1.5fr; gap: 40px; margin-bottom: 48px; }
+  .col-title {
+    font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 400;
+    color: var(--warm-brown); margin-bottom: 18px; padding-bottom: 8px;
+    border-bottom: 1px solid var(--accent); display: flex; align-items: center; gap: 10px;
+  }
+  .ingredient-group-title {
+    font-family: 'Libre Baskerville', serif; font-size: 0.7rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-tag); margin-bottom: 10px;
+  }
+  .ingredient-item {
+    display: flex; align-items: baseline; gap: 10px; padding: 7px 0;
+    border-bottom: 1px dotted rgba(61,43,26,0.12); font-size: 1rem; line-height: 1.4;
+  }
+  .ingredient-qty { font-family: 'Libre Baskerville', serif; font-size: 0.82rem; color: var(--accent-tag); min-width: 64px; text-align: right; }
+  .ingredient-name { color: var(--ink); }
+  .step { display: flex; gap: 20px; margin-bottom: 20px; }
+  .step-num { font-family: 'Playfair Display', serif; font-style: italic; font-size: 2rem; color: var(--accent); opacity: 0.65; min-width: 36px; line-height: 1; flex-shrink: 0; }
+  .step-text { font-family: 'Cormorant Garamond', serif; font-size: 1.08rem; line-height: 1.75; color: #2a1f12; padding-top: 4px; }
+
+  /* fiches vertus */
+  .virtue-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 18px; margin-bottom: 48px; }
+  .virtue-card {
+    border-radius: 8px; border: 1px solid rgba(122,69,16,0.12);
+    border-top: 3px solid var(--accent); overflow: hidden; transition: box-shadow 0.2s;
+  }
+  .virtue-card:hover { box-shadow: 0 4px 18px rgba(122,69,16,0.1); }
+  .virtue-card-header { padding: 16px 18px 10px; display: flex; align-items: flex-start; gap: 12px; }
+  .virtue-emoji { font-size: 2rem; line-height: 1; flex-shrink: 0; }
+  .virtue-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--warm-brown); margin-bottom: 2px; }
+  .virtue-latin { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.82rem; color: var(--muted); }
+  .virtue-bar { height: 3px; margin: 0 18px 0; background: rgba(61,43,26,0.08); border-radius: 2px; overflow: hidden; }
+  .virtue-bar-fill { height: 100%; border-radius: 2px; background: linear-gradient(to right, var(--bar-from), var(--bar-to)); }
+  .virtue-body { padding: 12px 18px 16px; }
+  .virtue-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.97rem; line-height: 1.65; color: #3a2d1e; margin-bottom: 12px; }
+  .virtue-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .virtue-tag { font-family: 'Libre Baskerville', serif; font-size: 0.6rem; letter-spacing: 0.1em; padding: 3px 9px; border-radius: 20px; background: var(--accent-soft); color: var(--accent-tag); }
+
+  /* conseil */
+  .info-tip { background: var(--accent-soft); border: 1px solid rgba(232,160,48,0.3); border-left: 4px solid var(--accent); padding: 20px 24px; border-radius: 0 6px 6px 0; }
+  .info-tip-label { font-family: 'Libre Baskerville', serif; font-size: 0.68rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-tag); margin-bottom: 8px; }
+  .info-tip-text { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1rem; color: var(--muted); line-height: 1.7; }
+
+  .page-num { text-align: right; margin-top: 40px; font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: rgba(61,43,26,0.35); }
+
+  @media (max-width: 640px) {
+    .info-hero, .info-page { padding-left: 32px; padding-right: 24px; }
+    .info-hero::before { display: none; }
+    .recipe-block { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html">&#8592; Retour au sommaire</a>
+    <span class="nav-code">008</span>
+  </nav>
+
+  <div class="info-hero">
+    <div class="info-hero-label">Detox · Eau infusée</div>
+    <div class="info-hero-code">008</div>
+    <h1 class="info-hero-title">Eau <em>citron – gingembre</em></h1>
+    <p class="info-hero-subtitle">détox · digestion · énergie naturelle</p>
+    <div class="info-hero-stats">
+      <div class="info-hero-stat"><span class="info-hero-stat-num">1 L</span><span class="info-hero-stat-label">par préparation</span></div>
+      <div class="info-hero-stat"><span class="info-hero-stat-num">5 min</span><span class="info-hero-stat-label">+ 1h d'infusion</span></div>
+      <div class="info-hero-stat"><span class="info-hero-stat-num">0 kcal</span><span class="info-hero-stat-label">sans miel</span></div>
+    </div>
+  </div>
+
+  <div class="info-page">
+
+    <p class="info-intro">
+      L'alliance du citron et du gingembre est l'une des plus puissantes de la naturopathie. Ensemble, ils stimulent la digestion, activent la circulation sanguine et apportent un coup de fouet naturel sans caféine. À consommer le matin à jeun pour un effet détox maximal.
+    </p>
+
+    <div class="info-section-label">Recette</div>
+    <div class="recipe-block">
+      <div>
+        <div class="col-title"><span>🍋</span> Ingrédients</div>
+        <div class="ingredient-group-title">Pour 1 litre</div>
+        <div class="ingredient-item"><span class="ingredient-qty">1 L</span><span class="ingredient-name">eau filtrée (froide ou tiède)</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">citron bio tranché en rondelles</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">3 cm</span><span class="ingredient-name">gingembre frais pelé et émincé</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">optionnel</span><span class="ingredient-name">1 c.c. de miel cru</span></div>
+        <div class="ingredient-item"><span class="ingredient-qty">optionnel</span><span class="ingredient-name">quelques feuilles de menthe</span></div>
+      </div>
+      <div>
+        <div class="col-title"><span>🥤</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Laver soigneusement le citron bio. Le trancher en rondelles fines sans le peler — la peau contient des huiles essentielles bénéfiques.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Peler et émincer finement le gingembre frais. Plus les lamelles sont fines, plus l'infusion sera intense.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Placer citron et gingembre dans un pichet ou une gourde. Verser l'eau par-dessus.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Laisser infuser minimum 1 heure au réfrigérateur, idéalement toute une nuit pour une saveur plus prononcée.</p></div>
+        <div class="step"><span class="step-num">5</span><p class="step-text">Ajouter le miel si désiré juste avant de servir. Se conserve 24 heures au frais.</p></div>
+      </div>
+    </div>
+
+    <div class="info-section-label">Vertus des ingrédients</div>
+    <div class="virtue-grid">
+      <div class="virtue-card">
+        <div class="virtue-card-header"><span class="virtue-emoji">🍋</span><div><div class="virtue-name">Citron</div><div class="virtue-latin">Citrus limon</div></div></div>
+        <div class="virtue-bar"><div class="virtue-bar-fill" style="width:90%"></div></div>
+        <div class="virtue-body">
+          <p class="virtue-desc">Alcalinisant une fois métabolisé malgré son acidité, le citron stimule la production de bile et soutient la fonction hépatique. Riche en vitamine C, il renforce l'immunité et favorise l'absorption du fer.</p>
+          <div class="virtue-tags"><span class="virtue-tag">Vitamine C</span><span class="virtue-tag">Détox foie</span><span class="virtue-tag">Immunité</span><span class="virtue-tag">Alcalinisant</span></div>
+        </div>
+      </div>
+      <div class="virtue-card">
+        <div class="virtue-card-header"><span class="virtue-emoji">🫚</span><div><div class="virtue-name">Gingembre</div><div class="virtue-latin">Zingiber officinale</div></div></div>
+        <div class="virtue-bar"><div class="virtue-bar-fill" style="width:85%"></div></div>
+        <div class="virtue-body">
+          <p class="virtue-desc">La gingérine et le shogaol qu'il contient sont de puissants anti-inflammatoires naturels. Il accélère la vidange gastrique, réduit les nausées et stimule la circulation sanguine périphérique.</p>
+          <div class="virtue-tags"><span class="virtue-tag">Anti-inflammatoire</span><span class="virtue-tag">Digestion</span><span class="virtue-tag">Circulation</span><span class="virtue-tag">Nausées</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="info-tip">
+      <div class="info-tip-label">✦ Conseil détox</div>
+      <p class="info-tip-text">Pour une cure de 7 jours, boire un grand verre (250 ml) chaque matin à jeun, 20 minutes avant le petit-déjeuner. Utiliser impérativement un citron bio si l'on conserve la peau. L'eau tiède (pas chaude) préserve mieux les enzymes actives du gingembre frais.</p>
+    </div>
+    <div class="page-num">fiche n° 008</div>
+  </div>
+</div>
+</body>
+</html>

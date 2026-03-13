@@ -8,3 +8,4 @@ v0.00.5 = new recette Chili mexicain aux légumes grillés
 v0.00.6 = ajout section sauce + new sauce vinaigrette et mayonaise
 v0.00.7 = ajout recette detox
 v0.00.8 = ajout page riche en potatium + detox hydratation 
+v0.00.9 = ajout eau detox
