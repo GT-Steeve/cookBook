@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>021 · Base soupe quotidienne — Carnet de Cuisine</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍴</text></svg>">
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+  .result-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:36px; }
+  .result-pill { display:flex; align-items:center; gap:8px; padding:8px 16px; border-radius:20px; background:var(--light-olive); border:1px solid rgba(92,107,58,0.25); font-family:'Cormorant Garamond',serif; font-size:0.95rem; color:var(--olive); }
+  .result-pill span { font-size:1rem; }
+
+  /* Combos grid */
+  .combo-section-label {
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.65rem; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--rust); margin: 40px 0 18px;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .combo-section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: linear-gradient(to right, var(--rust), transparent); opacity: 0.3;
+  }
+  .combo-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px; margin-bottom: 40px;
+  }
+  .combo-card {
+    border-radius: 8px; padding: 18px 20px;
+    border: 1px solid rgba(61,43,26,0.1);
+    border-top: 3px solid var(--gold);
+    background: #faf7f1;
+  }
+  .combo-num {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.6rem; color: rgba(201,168,76,0.3); line-height: 1; margin-bottom: 6px;
+  }
+  .combo-items {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem; color: var(--ink); line-height: 1.7;
+  }
+  .combo-items span {
+    display: inline-block;
+    background: var(--light-olive); color: var(--olive);
+    font-size: 0.85rem; padding: 2px 10px; border-radius: 20px;
+    margin: 2px 2px;
+    font-family: 'Libre Baskerville', serif;
+  }
+</style>
+</head>
+<body>
+<div class="book">
+  <nav class="recipe-nav">
+    <a href="../index.html#r021">&#8592; Retour au sommaire</a>
+    <span class="nav-code">021</span>
+  </nav>
+  <div class="recipe-page">
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">021</div>
+        <div class="recipe-category">Recette · Soupe · Base quotidienne</div>
+        <h1 class="recipe-title">Base soupe quotidienne</h1>
+        <p class="recipe-subtitle">eau chaude · gingembre · poulet · légumes variables</p>
+      </div>
+    </div>
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">5 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">20 min</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">1</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Très facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="result-row">
+      <div class="result-pill"><span>📅</span> Tous les soirs</div>
+      <div class="result-pill"><span>🔥</span> Maigrir + dégonfler</div>
+      <div class="result-pill"><span>🔄</span> Légumes variables</div>
+      <div class="result-pill"><span>⚡</span> Ultra simple</div>
+    </div>
+
+    <div class="columns">
+      <div>
+        <div class="col-title"><span>🌿</span> Base fixe</div>
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Toujours présents</div>
+          <div class="ingredient-item"><span class="ingredient-qty">500 ml</span><span class="ingredient-name">eau chaude</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 cm</span><span class="ingredient-name">gingembre frais râpé ou tranché</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">100–150 g</span><span class="ingredient-name">poulet (blanc, cuisse ou cœurs)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">2–3</span><span class="ingredient-name">légumes au choix (voir combos)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">sel, poivre</span><span class="ingredient-name">selon goût</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+        <div class="step"><span class="step-num">1</span><p class="step-text">Porter l'eau à ébullition dans une petite casserole. Ajouter le gingembre.</p></div>
+        <div class="step"><span class="step-num">2</span><p class="step-text">Ajouter le poulet coupé en petits morceaux. Cuire 8 à 10 minutes.</p></div>
+        <div class="step"><span class="step-num">3</span><p class="step-text">Ajouter les légumes du combo choisi. Mijoter 8 minutes.</p></div>
+        <div class="step"><span class="step-num">4</span><p class="step-text">Saler légèrement, poivrer. Servir chaud dans un grand bol.</p></div>
+      </div>
+    </div>
+
+    <!-- Combos légumes -->
+    <div class="combo-section-label">3 combos légumes compatibles</div>
+    <div class="combo-grid">
+      <div class="combo-card">
+        <div class="combo-num">A</div>
+        <div class="combo-items">
+          <span>carotte</span>
+          <span>courgette</span>
+          <span>céleri</span>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:10px;line-height:1.5;">Combo doux et sucré naturel. Riche en potassium et en bêta-carotène. Idéal pour commencer la semaine.</p>
+      </div>
+      <div class="combo-card">
+        <div class="combo-num">B</div>
+        <div class="combo-items">
+          <span>chou</span>
+          <span>champignons</span>
+          <span>épinards</span>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:10px;line-height:1.5;">Combo detox et drainant. Chou brûle-graisse, champignons immunisants, épinards riches en fer. Le plus efficace pour dégonfler.</p>
+      </div>
+      <div class="combo-card">
+        <div class="combo-num">C</div>
+        <div class="combo-items">
+          <span>poireau</span>
+          <span>navet</span>
+          <span>carotte</span>
+        </div>
+        <p style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:0.9rem;color:var(--muted);margin-top:10px;line-height:1.5;">Combo hivernal classique. Poireau diurétique naturel, navet détoxifiant, carotte adoucissante. Bouillon très parfumé.</p>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <div class="tip-label">✦ Conseil quotidien</div>
+      <p class="tip-text">Faire cette soupe le soir remplace un dîner lourd tout en apportant suffisamment de protéines pour éviter la fonte musculaire. Varier les combos de légumes chaque jour pour ne pas s'ennuyer et couvrir un spectre large de micronutriments. Préparer en double portion et conserver au frais — se réchauffe en 2 minutes.</p>
+    </div>
+    <div class="page-num">recette n° 021</div>
+  </div>
+</div>
+</body>
+</html>

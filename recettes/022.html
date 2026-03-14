@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>022 · Caldo de Corazones drainant — Carnet de Cuisine</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍴</text></svg>">
+<link rel="stylesheet" href="../asset/css/style.css">
+<style>
+
+  /* Hero interne */
+  .recipe-badge {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: linear-gradient(135deg, #2d1a08, #4a2d12);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 8px; padding: 12px 22px; margin-bottom: 32px;
+  }
+  .recipe-badge-icon { font-size: 1.6rem; }
+  .recipe-badge-text {
+    font-family: 'Playfair Display', serif; font-style: italic;
+    font-size: 1.1rem; color: var(--gold); letter-spacing: 0.04em;
+  }
+  .recipe-badge-sub {
+    font-family: 'Libre Baskerville', serif; font-size: 0.62rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: rgba(201,168,76,0.55); display: block; margin-top: 2px;
+  }
+
+  /* Objectif bandeaux */
+  .objective-row {
+    display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px;
+  }
+  .obj-pill {
+    display: flex; align-items: center; gap: 8px;
+    padding: 7px 16px; border-radius: 20px;
+    font-family: 'Libre Baskerville', serif;
+    font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  .obj-pill.potassium { background: #e8f0d8; color: #3d5c28; border: 1px solid rgba(61,92,40,0.25); }
+  .obj-pill.sodium    { background: #e8f0f8; color: #1e4a75; border: 1px solid rgba(30,74,117,0.25); }
+  .obj-pill.time      { background: #fdf5e8; color: var(--rust); border: 1px solid rgba(155,69,33,0.25); }
+
+  /* Étapes style "sizzle" */
+  .step-label {
+    font-family: 'Libre Baskerville', serif; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 4px;
+  }
+
+  /* Bloc "Pourquoi c'est le Graal" */
+  .graal-section {
+    margin-top: 40px;
+    border-top: 1px solid rgba(201,168,76,0.3);
+    padding-top: 32px;
+  }
+  .graal-title {
+    font-family: 'Playfair Display', serif; font-size: 1.3rem;
+    color: var(--warm-brown); margin-bottom: 20px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .graal-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    gap: 16px;
+  }
+  .graal-card {
+    padding: 18px 20px; border-radius: 8px;
+    border: 1px solid rgba(61,43,26,0.1);
+    border-top: 3px solid var(--gold);
+    background: #faf7f1;
+  }
+  .graal-card-title {
+    font-family: 'Playfair Display', serif; font-size: 1rem;
+    color: var(--warm-brown); margin-bottom: 8px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .graal-card-text {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 0.97rem; color: var(--muted); line-height: 1.65;
+  }
+
+  /* Highlight bouillon */
+  .bouillon-highlight {
+    background: linear-gradient(to right, rgba(201,168,76,0.12), transparent);
+    border-left: 4px solid var(--gold);
+    padding: 14px 20px; border-radius: 0 6px 6px 0;
+    margin-top: 20px;
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 1.05rem; color: var(--warm-brown); line-height: 1.7;
+  }
+  .bouillon-highlight strong {
+    font-style: normal; font-family: 'Libre Baskerville', serif;
+    font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); display: block; margin-bottom: 4px;
+  }
+</style>
+</head>
+<body>
+<div class="book">
+
+  <nav class="recipe-nav">
+    <a href="../index.html#r022">&#8592; Retour au sommaire</a>
+    <span class="nav-code">022</span>
+  </nav>
+
+  <div class="recipe-page">
+
+    <div class="recipe-header">
+      <div class="recipe-header-left">
+        <div class="recipe-num">022</div>
+        <div class="recipe-category">Recette · Soupe · Caldo sud-américain</div>
+        <h1 class="recipe-title">Caldo de Corazones drainant</h1>
+        <p class="recipe-subtitle">cœurs de poulet · patate douce · gingembre · brunoise express</p>
+      </div>
+    </div>
+
+    <div class="recipe-meta">
+      <div class="meta-item"><span class="meta-label">Préparation</span><span class="meta-value">8–10 min</span></div>
+      <div class="meta-item"><span class="meta-label">Cuisson</span><span class="meta-value">10 min</span></div>
+      <div class="meta-item"><span class="meta-label">Personnes</span><span class="meta-value">1</span></div>
+      <div class="meta-item"><span class="meta-label">Difficulté</span><span class="meta-value">Facile</span></div>
+    </div>
+
+    <div class="recipe-divider"></div>
+
+    <div class="columns">
+      <!-- Ingrédients -->
+      <div>
+        <div class="col-title"><span>🌿</span> Ingrédients</div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Protéines</div>
+          <div class="ingredient-item"><span class="ingredient-qty">100 g</span><span class="ingredient-name">cœurs de poulet nettoyés, coupés en deux</span></div>
+        </div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Base potassium</div>
+          <div class="ingredient-item"><span class="ingredient-qty">80 g</span><span class="ingredient-name">patate douce ou courge en brunoise</span></div>
+        </div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Drainage</div>
+          <div class="ingredient-item"><span class="ingredient-qty">2 cm</span><span class="ingredient-name">gingembre frais en mini dés</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1</span><span class="ingredient-name">branche de céleri émincée finement</span></div>
+        </div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Le vert</div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 poignée</span><span class="ingredient-name">haricots verts ou courgette en brunoise</span></div>
+        </div>
+
+        <div class="ingredient-group">
+          <div class="ingredient-group-title">Liquide &amp; finition</div>
+          <div class="ingredient-item"><span class="ingredient-qty">400 ml</span><span class="ingredient-name">eau bouillante</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 goutte</span><span class="ingredient-name">huile d'olive</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">1 poignée</span><span class="ingredient-name">persil frais ou coriandre (à la fin)</span></div>
+          <div class="ingredient-item"><span class="ingredient-qty">poivre</span><span class="ingredient-name">selon goût — pas de sel</span></div>
+        </div>
+      </div>
+
+      <!-- Préparation -->
+      <div>
+        <div class="col-title"><span>👨‍🍳</span> Préparation</div>
+
+        <div class="step">
+          <span class="step-num">1</span>
+          <div>
+            <div class="step-label">Le Sizzle — 2 min</div>
+            <p class="step-text">Dans une petite casserole, faire chauffer une goutte d'huile d'olive à feu vif. Faire sauter les cœurs de poulet avec le gingembre en mini dés. Le gingembre parfume la viande et neutralise le goût parfois fort des abats.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-num">2</span>
+          <div>
+            <div class="step-label">L'Ébullition — 1 min</div>
+            <p class="step-text">Verser l'eau bouillante directement sur la viande dans la casserole. Déglacer en grattant les sucs. C'est plus sain que le bouillon cube industriel, trop riche en sodium.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-num">3</span>
+          <div>
+            <div class="step-label">Le Plongeon — 5–6 min</div>
+            <p class="step-text">Ajouter la patate douce, le céleri, la courgette ou les haricots verts. Les couper en brunoise très fine (dés de 5 mm max) pour qu'ils ramollissent en moins de 6 minutes.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <span class="step-num">4</span>
+          <div>
+            <div class="step-label">La Touche Finale</div>
+            <p class="step-text">Hors du feu, ajouter une poignée de persil frais ou de coriandre. Ne pas faire bouillir — c'est le secret des Sud-Américains et le meilleur draineur naturel pour le visage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Highlight bouillon -->
+    <div class="bouillon-highlight">
+      <strong>✦ Ne jette pas le bouillon — bois-le !</strong>
+      La patate douce et le céleri infusent l'eau de cuisson de tout leur potassium. C'est dans ce bouillon doré que se concentrent les minéraux qui vont "creuser" tes joues et sculpter l'ovale du visage.
+    </div>
+
+    <!-- Section Graal -->
+    <div class="graal-section">
+      <h2 class="graal-title">💡 Pourquoi c'est le "Graal"</h2>
+      <div class="graal-grid">
+
+        <div class="graal-card">
+          <div class="graal-card-title">❤️ Cœurs de poulet</div>
+          <p class="graal-card-text">Ultra riches en zinc, en fer et en protéines denses. Ils saturent la faim sans apporter de glucides complexes. La coupe en deux accélère la cuisson — prêts en moins de 8 minutes.</p>
+        </div>
+
+        <div class="graal-card">
+          <div class="graal-card-title">🧂 Zéro sodium</div>
+          <p class="graal-card-text">En évitant le poivron, le sel et le bouillon cube, et en utilisant le gingembre pour le "kick" de saveur, tu ne provoques aucune rétention d'eau. Le visage peut alors se drainer librement.</p>
+        </div>
+
+        <div class="graal-card">
+          <div class="graal-card-title">⚡ Potassium actif</div>
+          <p class="graal-card-text">Patate douce + céleri dans l'eau de cuisson = bouillon naturellement chargé en potassium. Ce minéral contrebalance le sodium résiduel dans les tissus et favorise l'élimination de l'eau sous-cutanée des joues.</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="page-num">recette n° 022</div>
+  </div>
+
+</div>
+</body>
+</html>

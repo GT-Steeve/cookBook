@@ -133,3 +133,44 @@ Les contributions sont les bienvenues ! Pour proposer une recette ou une amélio
 ## 📄 Licence
 
 Ce projet est distribué sous licence **MIT**. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+
+---
+
+## 📄 Prompt pour trouver des recettes
+
+Gemini a dit
+C'est parfait. Avec 2L à 3L d'eau et du sport, tu as déjà la base solide. On va maintenant s'attaquer à la nutrition pour "assécher" les tissus du visage et faire ressortir tes traits.
+
+Voici le prompt optimisé. Il est conçu pour donner des instructions ultra-précises à une IA afin qu'elle devienne ton coach en nutrition esthétique.
+
+Le Prompt à copier-coller
+Rôle : Agis comme un expert en nutrition esthétique et en diététique du sport, spécialisé dans la définition musculaire et la réduction de l'oedème facial.
+
+Objectif : Génère une liste de 7 plats (idées de repas) sans gluten, riches en potassium et très pauvres en sodium, réalisables en moins de 10 minutes. L'objectif final est de maximiser la perte d'eau sous-cutanée pour sculpter le visage (effet "hollow cheeks").
+
+Contraintes de composition pour chaque plat :
+
+Focus Potassium : Utilise des ingrédients à haute teneur en potassium (épinards, avocat, banane, patate douce cuite d'avance, yaourt grec, poisson blanc).
+
+Effet Drainant : Intègre systématiquement au moins un aliment diurétique naturel (asperges, concombre, céleri, fenouil, persil, citron).
+
+Contrôle du Sodium : Interdiction d'utiliser du sel de table, de la sauce soja ou des conserves. Utilise des épices, du citron ou du vinaigre de cidre pour le goût.
+
+Rapidité : Les plats doivent être des assemblages ou nécessiter une cuisson ultra-rapide (< 10 min).
+
+Données chiffrées : Pour chaque plat, fournis :
+
+Le total calorique approximatif.
+
+L'ingrédient "star" pour le potassium.
+
+L'ingrédient "star" pour le drainage.
+
+Format de réponse : Utilise un tableau ou une liste à puces claire et scannable. Ajoute une brève astuce de "finition" pour chaque repas afin d'éviter la rétention d'eau.
+
+Pourquoi ce prompt va fonctionner pour toi :
+Le ratio Sodium/Potassium : En forçant l'IA à bannir le sel tout en boostant le potassium, on crée un gradient osmotique qui force l'eau à sortir de tes tissus.
+
+Le gain de temps : En précisant "assemblage", tu évites les recettes complexes qui te feraient craquer pour du fast-food (souvent très salé).
+
+La spécificité "Visage" : Le mentionner dans le prompt force l'IA à choisir des aliments qui ne causent pas d'inflammation systémique.
