@@ -3,345 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Riche en potassium — Carnet de Cuisine</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥑</text></svg>">
+<title>006 · Riche en potassium — Carnet de Cuisine</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍴</text></svg>">
 <link rel="stylesheet" href="../asset/css/style.css">
-<style>
-
-  /* ── Hero bannière ── */
-  .info-hero {
-    background: linear-gradient(135deg, #2d4a1e 0%, #3d5c28 50%, #4a6b32 100%);
-    padding: 48px 60px 44px 84px;
-    position: relative;
-    overflow: hidden;
-  }
-  .info-hero::before {
-    content: 'K';
-    position: absolute;
-    right: 48px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-family: 'Playfair Display', serif;
-    font-size: 11rem;
-    font-weight: 700;
-    color: rgba(255,255,255,0.06);
-    line-height: 1;
-    pointer-events: none;
-  }
-  .info-hero-label {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: rgba(232,237,216,0.6);
-    margin-bottom: 10px;
-  }
-  .info-hero-code {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 3.5rem;
-    color: rgba(201,168,76,0.2);
-    line-height: 1;
-    margin-bottom: -6px;
-  }
-  .info-hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(1.8rem, 4vw, 2.6rem);
-    font-weight: 400;
-    color: #e8edd8;
-    line-height: 1.15;
-    margin-bottom: 10px;
-  }
-  .info-hero-title em {
-    font-style: italic;
-    color: var(--gold);
-  }
-  .info-hero-subtitle {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.1rem;
-    color: rgba(232,237,216,0.6);
-  }
-  .info-hero-stat {
-    margin-top: 20px;
-    display: inline-flex;
-    align-items: baseline;
-    gap: 8px;
-    background: rgba(255,255,255,0.07);
-    border: 1px solid rgba(201,168,76,0.25);
-    border-radius: 6px;
-    padding: 10px 18px;
-  }
-  .info-hero-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.6rem;
-    color: var(--gold);
-  }
-  .info-hero-stat-label {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.72rem;
-    color: rgba(232,237,216,0.55);
-    letter-spacing: 0.1em;
-  }
-
-  /* ── Corps de la fiche ── */
-  .info-page {
-    padding: 52px 60px 80px 84px;
-    background: var(--cream);
-    position: relative;
-  }
-  .info-page::after {
-    content: '';
-    position: absolute;
-    right: 0; top: 0; bottom: 0;
-    width: 4px;
-    background: linear-gradient(to bottom, #3d5c28, var(--gold), #3d5c28);
-    opacity: 0.3;
-  }
-
-  /* Intro */
-  .info-intro {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
-    line-height: 1.85;
-    color: #2a1f12;
-    max-width: 640px;
-    margin-bottom: 44px;
-    border-left: 3px solid var(--gold);
-    padding-left: 20px;
-  }
-
-  /* Section label */
-  .info-section-label {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.32em;
-    text-transform: uppercase;
-    color: var(--rust);
-    margin-bottom: 24px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-  }
-  .info-section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, var(--rust), transparent);
-    opacity: 0.3;
-  }
-
-  /* Grille des aliments */
-  .food-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    margin-bottom: 48px;
-  }
-
-  .food-card {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 1px solid rgba(61,43,26,0.1);
-    transition: box-shadow 0.2s;
-  }
-  .food-card:hover {
-    box-shadow: 0 4px 18px rgba(61,43,26,0.1);
-  }
-
-  .food-card-header {
-    padding: 18px 20px 14px;
-    display: flex;
-    align-items: flex-start;
-    gap: 14px;
-  }
-  .food-emoji {
-    font-size: 2.2rem;
-    line-height: 1;
-    flex-shrink: 0;
-  }
-  .food-card-meta { flex: 1; }
-  .food-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.15rem;
-    color: var(--warm-brown);
-    margin-bottom: 3px;
-  }
-  .food-latin {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.85rem;
-    color: var(--muted);
-  }
-  .food-potassium-bar {
-    height: 3px;
-    margin: 0 20px;
-    border-radius: 2px;
-    background: rgba(61,43,26,0.08);
-    overflow: hidden;
-  }
-  .food-potassium-fill {
-    height: 100%;
-    border-radius: 2px;
-    background: linear-gradient(to right, #3d5c28, var(--gold));
-    transition: width 0.6s ease;
-  }
-  .food-card-body {
-    padding: 14px 20px 18px;
-  }
-  .food-stat-row {
-    display: flex;
-    align-items: baseline;
-    gap: 6px;
-    margin-bottom: 10px;
-  }
-  .food-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #3d5c28;
-  }
-  .food-stat-unit {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.7rem;
-    color: var(--muted);
-    letter-spacing: 0.08em;
-  }
-  .food-stat-ref {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 0.82rem;
-    color: var(--muted);
-    margin-left: auto;
-  }
-  .food-desc {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 0.98rem;
-    line-height: 1.65;
-    color: #3a2d1e;
-    margin-bottom: 12px;
-  }
-  .food-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .food-tag {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.62rem;
-    letter-spacing: 0.1em;
-    padding: 3px 9px;
-    border-radius: 20px;
-    background: var(--light-olive);
-    color: var(--olive);
-  }
-
-  /* Couleurs par carte */
-  .food-card.avocat  { border-top: 3px solid #4a7c2e; }
-  .food-card.banane  { border-top: 3px solid #c9a84c; }
-  .food-card.patate  { border-top: 3px solid #b87c3a; }
-  .food-card.asperge { border-top: 3px solid #6b8c45; }
-  .food-card.artichaut { border-top: 3px solid #5c7a50; }
-  .food-card.cajou   { border-top: 3px solid #a0622a; }
-
-  .food-card.avocat  .food-potassium-fill { background: linear-gradient(to right, #4a7c2e, #7ab845); }
-  .food-card.banane  .food-potassium-fill { background: linear-gradient(to right, #c9a84c, #e8c96a); }
-  .food-card.patate  .food-potassium-fill { background: linear-gradient(to right, #b87c3a, #d4a060); }
-  .food-card.asperge .food-potassium-fill { background: linear-gradient(to right, #6b8c45, #90b85a); }
-  .food-card.artichaut .food-potassium-fill { background: linear-gradient(to right, #5c7a50, #7da870); }
-  .food-card.cajou   .food-potassium-fill { background: linear-gradient(to right, #a0622a, #d4924a); }
-
-  /* Tableau comparatif */
-  .compare-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
-    margin-bottom: 48px;
-  }
-  .compare-table thead tr {
-    background: var(--warm-brown);
-    color: var(--cream);
-  }
-  .compare-table th {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 12px 16px;
-    text-align: left;
-    font-weight: 400;
-  }
-  .compare-table th:last-child { text-align: right; }
-  .compare-table td {
-    padding: 11px 16px;
-    border-bottom: 1px solid rgba(61,43,26,0.08);
-    color: #2a1f12;
-    vertical-align: middle;
-  }
-  .compare-table td:last-child { text-align: right; }
-  .compare-table tr:nth-child(even) td { background: rgba(61,43,26,0.025); }
-  .compare-table .td-bar {
-    width: 120px;
-    padding-right: 20px;
-  }
-  .bar-mini {
-    height: 6px;
-    border-radius: 3px;
-    background: rgba(61,43,26,0.08);
-    overflow: hidden;
-  }
-  .bar-mini-fill {
-    height: 100%;
-    border-radius: 3px;
-    background: linear-gradient(to right, #3d5c28, var(--gold));
-  }
-  .td-emoji { font-size: 1.2rem; padding-right: 4px; }
-  .td-highlight {
-    font-family: 'Playfair Display', serif;
-    color: #3d5c28;
-    font-size: 1.05rem;
-  }
-
-  /* Conseil */
-  .info-tip {
-    background: #f0f5e8;
-    border: 1px solid rgba(92,107,58,0.3);
-    border-left: 4px solid #3d5c28;
-    padding: 20px 24px;
-    border-radius: 0 6px 6px 0;
-    margin-bottom: 0;
-  }
-  .info-tip-label {
-    font-family: 'Libre Baskerville', serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: #3d5c28;
-    margin-bottom: 8px;
-  }
-  .info-tip-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--muted);
-    line-height: 1.7;
-  }
-
-  .page-num {
-    text-align: right;
-    margin-top: 40px;
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: 0.9rem;
-    color: rgba(61,43,26,0.35);
-  }
-
-  @media (max-width: 640px) {
-    .info-hero, .info-page { padding-left: 32px; padding-right: 24px; }
-    .food-grid { grid-template-columns: 1fr; }
-    .info-hero::before { display: none; }
-  }
-</style>
+<link rel="stylesheet" href="../asset/css/006.css">
 </head>
 <body>
 <div class="book">
@@ -356,7 +21,7 @@
     <div class="info-hero-label">Aliments riches · Fiche nutritionnelle</div>
     <div class="info-hero-code">006</div>
     <h1 class="info-hero-title">Riche en <em>potassium</em></h1>
-    <p class="info-hero-subtitle">noix de cajou · avocat · patate douce · artichaut · banane · asperge</p>
+    <p class="info-hero-subtitle">noix de cajou · avocat · patate douce · épinard · haricot blanc · lentille · artichaut · banane · saumon · sardine · amande · yaourt · pomme de terre · betterave · tomate · orange · melon · asperge</p>
     <div class="info-hero-stat">
       <span class="info-hero-stat-num">2 000 mg</span>
       <span class="info-hero-stat-label">apport journalier recommandé</span>
@@ -367,186 +32,11 @@
   <div class="info-page">
 
     <p class="info-intro">
-      Le potassium est un minéral essentiel qui régule la pression artérielle, soutient la fonction musculaire et favorise l'équilibre hydrique de l'organisme. Ces six aliments en sont parmi les meilleures sources naturelles — à intégrer facilement dans une alimentation quotidienne.
+      Le potassium aide à réduire la rétention d’eau en équilibrant les fluides dans l’organisme et en favorisant l’élimination de l’excès de sodium par les reins. Cela limite les gonflements, notamment au niveau du visage, et peut contribuer à un aspect plus affiné et des joues moins gonflées — à condition d’être associé à une bonne hydratation et une alimentation équilibrée.
     </p>
 
-    <!-- Fiches aliments -->
-    <div class="info-section-label">Les 6 aliments</div>
-
-    <div class="food-grid">
-
-      <!-- Avocat -->
-      <div class="food-card avocat">
-        <div class="food-card-header">
-          <span class="food-emoji">🥑</span>
-          <div class="food-card-meta">
-            <div class="food-name">Avocat</div>
-            <div class="food-latin">Persea americana</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:88%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">485</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 24 % AJR</span>
-          </div>
-          <p class="food-desc">Riche en graisses mono-insaturées bénéfiques pour le cœur, l'avocat apporte aussi magnésium, vitamine K et folates. Sa teneur en potassium dépasse celle de la banane à poids égal.</p>
-          <div class="food-tags">
-            <span class="food-tag">Cru</span>
-            <span class="food-tag">Graisses saines</span>
-            <span class="food-tag">Vitamine K</span>
-            <span class="food-tag">Folates</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Banane -->
-      <div class="food-card banane">
-        <div class="food-card-header">
-          <span class="food-emoji">🍌</span>
-          <div class="food-card-meta">
-            <div class="food-name">Banane</div>
-            <div class="food-latin">Musa paradisiaca</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:68%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">358</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 18 % AJR</span>
-          </div>
-          <p class="food-desc">La référence populaire du potassium. Énergie rapide grâce à ses sucres naturels, elle est idéale avant ou après l'effort. Plus la banane est mûre, plus son potassium est biodisponible.</p>
-          <div class="food-tags">
-            <span class="food-tag">Énergie</span>
-            <span class="food-tag">Vitamine B6</span>
-            <span class="food-tag">Sport</span>
-            <span class="food-tag">Cru</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Patate douce -->
-      <div class="food-card patate">
-        <div class="food-card-header">
-          <span class="food-emoji">🍠</span>
-          <div class="food-card-meta">
-            <div class="food-name">Patate douce</div>
-            <div class="food-latin">Ipomoea batatas</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:72%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">475</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 24 % AJR</span>
-          </div>
-          <p class="food-desc">Excellente source de bêta-carotène (précurseur de la vitamine A) en plus du potassium. À index glycémique modéré, elle rassasie durablement et se prête à de nombreuses préparations.</p>
-          <div class="food-tags">
-            <span class="food-tag">Cuit</span>
-            <span class="food-tag">Bêta-carotène</span>
-            <span class="food-tag">Vitamine A</span>
-            <span class="food-tag">IG modéré</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Asperge -->
-      <div class="food-card asperge">
-        <div class="food-card-header">
-          <span class="food-emoji">🌱</span>
-          <div class="food-card-meta">
-            <div class="food-name">Asperge</div>
-            <div class="food-latin">Asparagus officinalis</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:52%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">202</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 10 % AJR</span>
-          </div>
-          <p class="food-desc">Très faible en calories, l'asperge est un légume diurétique naturel qui favorise l'élimination. Elle apporte également folates, vitamines C et K, et des prébiotiques bénéfiques pour le microbiote.</p>
-          <div class="food-tags">
-            <span class="food-tag">Diurétique</span>
-            <span class="food-tag">Folates</span>
-            <span class="food-tag">Vitamine C</span>
-            <span class="food-tag">Faible cal.</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Artichaut -->
-      <div class="food-card artichaut">
-        <div class="food-card-header">
-          <span class="food-emoji">🌿</span>
-          <div class="food-card-meta">
-            <div class="food-name">Artichaut</div>
-            <div class="food-latin">Cynara cardunculus</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:65%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">370</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 19 % AJR</span>
-          </div>
-          <p class="food-desc">Champion des fibres parmi les légumes, l'artichaut stimule la sécrétion de bile et soutient la fonction hépatique. Il contient de l'inuline, un prébiotique puissant pour la flore intestinale.</p>
-          <div class="food-tags">
-            <span class="food-tag">Fibres</span>
-            <span class="food-tag">Foie</span>
-            <span class="food-tag">Prébiotique</span>
-            <span class="food-tag">Cuit</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Noix de cajou -->
-      <div class="food-card cajou">
-        <div class="food-card-header">
-          <span class="food-emoji">🥜</span>
-          <div class="food-card-meta">
-            <div class="food-name">Noix de cajou</div>
-            <div class="food-latin">Anacardium occidentale</div>
-          </div>
-        </div>
-        <div class="food-potassium-bar">
-          <div class="food-potassium-fill" style="width:100%"></div>
-        </div>
-        <div class="food-card-body">
-          <div class="food-stat-row">
-            <span class="food-stat-num">565</span>
-            <span class="food-stat-unit">mg / 100 g</span>
-            <span class="food-stat-ref">≈ 28 % AJR</span>
-          </div>
-          <p class="food-desc">La plus riche en potassium de cette sélection. La noix de cajou cumule magnésium, zinc, fer et tryptophane — précurseur de la sérotonine. Une poignée de 30 g suffit à couvrir près de 10 % de l'AJR en potassium tout en apportant des graisses insaturées cardioprotectrices.</p>
-          <div class="food-tags">
-            <span class="food-tag">Cru ou grillé</span>
-            <span class="food-tag">Magnésium</span>
-            <span class="food-tag">Zinc</span>
-            <span class="food-tag">Sérotonine</span>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- end food-grid -->
-
     <!-- Tableau comparatif -->
-    <div class="info-section-label">Comparatif</div>
+    <div class="info-section-label">classement par teneur</div>
 
     <table class="compare-table">
       <thead>
@@ -557,12 +47,36 @@
           <th>% AJR</th>
         </tr>
       </thead>
-      <tbody>
+            <tbody>
+        <tr>
+          <td><span class="td-emoji">🌰</span> <strong>Amande</strong></td>
+          <td class="td-highlight">705 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:100%"></div></div></td>
+          <td>35 %</td>
+        </tr>
         <tr>
           <td><span class="td-emoji">🥜</span> <strong>Noix de cajou</strong></td>
           <td class="td-highlight">565 mg</td>
           <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:100%"></div></div></td>
           <td>28 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🔹</span> <strong>Haricot blanc</strong></td>
+          <td class="td-highlight">561 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:99%"></div></div></td>
+          <td>28 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🌿</span> <strong>Épinard</strong></td>
+          <td class="td-highlight">558 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:99%"></div></div></td>
+          <td>28 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🐟</span> <strong>Saumon</strong></td>
+          <td class="td-highlight">490 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:87%"></div></div></td>
+          <td>25 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🥑</span> <strong>Avocat</strong></td>
@@ -577,10 +91,28 @@
           <td>24 %</td>
         </tr>
         <tr>
+          <td><span class="td-emoji">🥔</span> <strong>Pomme de terre</strong></td>
+          <td class="td-highlight">421 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:75%"></div></div></td>
+          <td>21 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🐠</span> <strong>Sardine</strong></td>
+          <td class="td-highlight">397 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:70%"></div></div></td>
+          <td>20 %</td>
+        </tr>
+        <tr>
           <td><span class="td-emoji">🌿</span> <strong>Artichaut</strong></td>
           <td class="td-highlight">370 mg</td>
           <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:65%"></div></div></td>
           <td>19 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🟤</span> <strong>Lentille</strong></td>
+          <td class="td-highlight">369 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:65%"></div></div></td>
+          <td>18 %</td>
         </tr>
         <tr>
           <td><span class="td-emoji">🍌</span> <strong>Banane</strong></td>
@@ -589,10 +121,40 @@
           <td>18 %</td>
         </tr>
         <tr>
+          <td><span class="td-emoji">🔹</span> <strong>Betterave</strong></td>
+          <td class="td-highlight">305 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:54%"></div></div></td>
+          <td>15 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🍈</span> <strong>Melon</strong></td>
+          <td class="td-highlight">267 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:47%"></div></div></td>
+          <td>13 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🥛</span> <strong>Yaourt nature</strong></td>
+          <td class="td-highlight">255 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:45%"></div></div></td>
+          <td>13 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🍅</span> <strong>Tomate</strong></td>
+          <td class="td-highlight">237 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:42%"></div></div></td>
+          <td>12 %</td>
+        </tr>
+        <tr>
           <td><span class="td-emoji">🌱</span> <strong>Asperge</strong></td>
           <td class="td-highlight">202 mg</td>
           <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:36%"></div></div></td>
           <td>10 %</td>
+        </tr>
+        <tr>
+          <td><span class="td-emoji">🍊</span> <strong>Orange</strong></td>
+          <td class="td-highlight">181 mg</td>
+          <td class="td-bar"><div class="bar-mini"><div class="bar-mini-fill" style="width:32%"></div></div></td>
+          <td>9 %</td>
         </tr>
       </tbody>
     </table>

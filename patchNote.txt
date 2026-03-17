@@ -16,3 +16,4 @@ Alpha
 v0.01.1 = ajout noix de cajou + update page de couverture
 v0.01.2 = polish titre + icone
 v0.01.3 = ajout 11 recette (soupes + autre) + prompt
+v0.01.4 = rework 006.html 
