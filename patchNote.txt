@@ -18,3 +18,24 @@ v0.01.2 = polish titre + icone
 v0.01.3 = ajout 11 recette (soupes + autre) + prompt
 v0.01.4 = rework 006.html 
 v0.01.5 = css de la recette 010.html
+v0.01.6 = BrainStorm Contenu du projet -> ajout haricot
+
+Reflexion foodcode
+Partage de recette simple, rapide, petit prix
+collecte d'aliment chargé en potassium
+Partage collation -> Kiwi, cacahète, noix de cajou, banane
+Partage condiment -> vinaigre de cidre, Avocat
+Partage eau
+
+Recette connu : 
+Lentille Sardine
+Salade au saumon
+Recette à reprendre sans lentille pour obtenir un chili-> https://cookpad.com/fr/recettes/25186771
+Chili végétarien -> https://cookpad.com/fr/recettes/17270732?ref=search&search_term=haricots+rouge 
+recette haricot -> https://cookpad.com/fr/recettes/16853055?ref=search&search_term=haricots+rouge -> retirer le sucre
+Jambalaya de haricot rouge -> https://cookpad.com/fr/recettes/16855905?ref=search&search_term=haricots+rouge -> retire 
+https://cookpad.com/fr/recettes/16447067 -> revoir l'égoutage sur papier sopalin
+Salade mexicaine simplifié -> https://cookpad.com/fr/recettes/15402036?ref=search&search_term=haricots+rouge
+
+Dessert : 
+https://cookpad.com/fr/recettes/14136660?ref=search&search_term=haricots+rouge -> brownie
